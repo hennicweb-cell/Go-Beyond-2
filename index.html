@@ -6,498 +6,113 @@
 <title>Go Beyond — Internal Search Brief | Raise + Recruit</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #0f2137;
-    --navy-mid: #1a3452;
-    --blue: #1d5fa8;
-    --blue-light: #2e7dd4;
-    --sky: #e8f2fc;
-    --amber: #e8a020;
-    --amber-light: #fef6e4;
-    --red: #c0392b;
-    --red-light: #fdecea;
-    --green: #1a7a4a;
-    --green-light: #e8f5ee;
-    --white: #ffffff;
-    --off-white: #f7f9fc;
-    --grey-100: #f0f4f8;
-    --grey-200: #dde4ed;
-    --grey-400: #8fa3bd;
-    --grey-700: #3d5166;
-    --text: #1c2b3a;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--off-white);
-    color: var(--text);
-    font-size: 15px;
-    line-height: 1.65;
-  }
-
-  /* TOP BAR */
-  .topbar {
-    background: var(--navy);
-    padding: 10px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .topbar-brand { color: var(--white); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
-  .topbar-meta { color: var(--grey-400); font-size: 12px; font-family: 'DM Mono', monospace; }
-  .confidential-badge {
-    background: var(--red); color: white; font-size: 10px; font-weight: 600;
-    letter-spacing: 2px; padding: 3px 10px; border-radius: 2px; text-transform: uppercase;
-  }
-
-  /* HERO */
-  .hero {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1d3d60 100%);
-    padding: 60px 40px 50px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(29,95,168,0.25) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; left: 30%;
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(232,160,32,0.1) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    color: var(--amber);
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .hero-org {
-    font-family: 'Playfair Display', serif;
-    color: var(--white);
-    font-size: 52px;
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 12px;
-  }
-  .hero-role {
-    color: rgba(255,255,255,0.75);
-    font-size: 20px;
-    font-weight: 300;
-    margin-bottom: 32px;
-  }
-  .hero-stats {
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-  .stat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .stat-val {
-    font-family: 'Playfair Display', serif;
-    color: var(--white);
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1;
-  }
-  .stat-label {
-    color: var(--grey-400);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-  }
-
-  /* LAYOUT */
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-
-  .layout {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 32px;
-    padding: 40px 40px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  /* SECTIONS */
-  .section { margin-bottom: 36px; }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--grey-200);
-  }
-  .section-num {
-    background: var(--blue);
-    color: white;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: var(--navy);
-    font-weight: 700;
-  }
-
-  /* CARDS */
-  .card {
-    background: white;
-    border-radius: 10px;
-    border: 1px solid var(--grey-200);
-    padding: 24px;
-    margin-bottom: 16px;
-  }
-  .card-title {
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--navy);
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  /* INFO BOXES */
-  .info-box {
-    border-radius: 8px;
-    padding: 18px 20px;
-    margin-bottom: 14px;
-  }
-  .info-box.blue { background: var(--sky); border-left: 4px solid var(--blue); }
-  .info-box.amber { background: var(--amber-light); border-left: 4px solid var(--amber); }
-  .info-box.red { background: var(--red-light); border-left: 4px solid var(--red); }
-  .info-box.green { background: var(--green-light); border-left: 4px solid var(--green); }
-  .info-box.navy { background: var(--grey-100); border-left: 4px solid var(--navy); }
-
-  .info-box-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .info-box.blue .info-box-label { color: var(--blue); }
-  .info-box.amber .info-box-label { color: var(--amber); }
-  .info-box.red .info-box-label { color: var(--red); }
-  .info-box.green .info-box-label { color: var(--green); }
-  .info-box.navy .info-box-label { color: var(--navy); }
-
-  .info-box p { font-size: 14px; color: var(--grey-700); line-height: 1.6; }
-
-  /* FAILURE CARDS */
-  .failure-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-  .failure-card {
-    background: white;
-    border: 1px solid var(--grey-200);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .failure-card-header {
-    background: var(--navy);
-    color: white;
-    padding: 12px 18px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-  .failure-card-body { padding: 16px 18px; }
-  .failure-card-body p { font-size: 13.5px; color: var(--grey-700); margin-bottom: 8px; }
-  .failure-label {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 2px 8px;
-    border-radius: 3px;
-    margin-bottom: 10px;
-  }
-  .failure-label.red { background: var(--red-light); color: var(--red); }
-
-  /* YEAR ONE TABLE */
-  .priority-list { display: flex; flex-direction: column; gap: 12px; }
-  .priority-item {
-    display: flex;
-    gap: 16px;
-    background: white;
-    border: 1px solid var(--grey-200);
-    border-radius: 10px;
-    padding: 18px 20px;
-    align-items: flex-start;
-  }
-  .priority-num {
-    background: var(--blue);
-    color: white;
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    width: 40px; height: 40px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .priority-content h4 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 5px; }
-  .priority-content p { font-size: 13.5px; color: var(--grey-700); }
-
-  /* DATA TABLE */
-  .data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  .data-table th {
-    background: var(--navy);
-    color: white;
-    padding: 10px 14px;
-    text-align: left;
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-  .data-table td {
-    padding: 11px 14px;
-    border-bottom: 1px solid var(--grey-200);
-    vertical-align: top;
-  }
-  .data-table tr:nth-child(even) td { background: var(--grey-100); }
-  .data-table tr:hover td { background: var(--sky); }
-  .data-table td:first-child { font-weight: 600; color: var(--navy); width: 32%; }
-
-  /* CAMPAIGNS TIMELINE */
-  .timeline { position: relative; }
-  .timeline-item {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
-    align-items: flex-start;
-  }
-  .timeline-month {
-    background: var(--navy);
-    color: white;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    padding: 4px 10px;
-    border-radius: 4px;
-    white-space: nowrap;
-    min-width: 72px;
-    text-align: center;
-    margin-top: 2px;
-  }
-  .timeline-month.highlight { background: var(--blue); }
-  .timeline-month.amber { background: var(--amber); }
-  .timeline-content h4 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
-  .timeline-content p { font-size: 13px; color: var(--grey-700); }
-
-  /* COMPETENCY TAGS */
-  .comp-grid { display: flex; flex-direction: column; gap: 12px; }
-  .comp-row {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  .comp-tag {
-    background: var(--navy);
-    color: white;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 12px;
-    border-radius: 20px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .comp-tag.func { background: var(--blue); }
-  .comp-tag.behav { background: var(--navy); }
-  .comp-desc { font-size: 13.5px; color: var(--grey-700); line-height: 1.5; }
-
-  /* NON-NEGOTIABLES */
-  .non-neg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .non-neg-item {
-    background: white;
-    border: 1px solid var(--grey-200);
-    border-top: 3px solid var(--blue);
-    border-radius: 8px;
-    padding: 16px;
-  }
-  .non-neg-item.dealbreaker { border-top-color: var(--red); }
-  .non-neg-title { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
-  .non-neg-body { font-size: 13px; color: var(--grey-700); }
-
-  /* SIDEBAR */
-  .sidebar { display: flex; flex-direction: column; gap: 20px; }
-  .sidebar-card {
-    background: white;
-    border: 1px solid var(--grey-200);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .sidebar-card-header {
-    background: var(--navy);
-    color: white;
-    padding: 12px 18px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  .sidebar-card-body { padding: 16px 18px; }
-  .sidebar-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--grey-100);
-    font-size: 13px;
-  }
-  .sidebar-row:last-child { border-bottom: none; }
-  .sidebar-label { color: var(--grey-400); font-size: 12px; }
-  .sidebar-val { font-weight: 600; color: var(--navy); text-align: right; max-width: 60%; }
-
-  /* ACTION ITEMS */
-  .action-list { display: flex; flex-direction: column; gap: 8px; }
-  .action-item {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    font-size: 13px;
-    color: var(--grey-700);
-  }
-  .action-item::before {
-    content: '→';
-    color: var(--amber);
-    font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  /* ALERT BOX */
-  .alert {
-    background: var(--amber-light);
-    border: 1px solid rgba(232,160,32,0.3);
-    border-radius: 8px;
-    padding: 14px 18px;
-    font-size: 13px;
-    color: var(--grey-700);
-  }
-  .alert strong { color: var(--amber); }
-
-  /* TAG PILLS */
-  .tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin: 3px 3px 3px 0;
-  }
-  .tag.blue { background: var(--sky); color: var(--blue); }
-  .tag.amber { background: var(--amber-light); color: #b07d10; }
-  .tag.green { background: var(--green-light); color: var(--green); }
-  .tag.red { background: var(--red-light); color: var(--red); }
-  .tag.navy { background: var(--grey-100); color: var(--navy); }
-
-  ul.nice { padding-left: 0; list-style: none; }
-  ul.nice li {
-    padding: 5px 0 5px 20px;
-    position: relative;
-    font-size: 14px;
-    color: var(--grey-700);
-    line-height: 1.5;
-  }
-  ul.nice li::before {
-    content: '•';
-    color: var(--blue);
-    font-weight: 700;
-    position: absolute;
-    left: 0;
-  }
-
-  /* PROCESS */
-  .process-steps { display: flex; flex-direction: column; gap: 0; }
-  .process-step {
-    display: flex;
-    gap: 0;
-  }
-  .process-step-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 40px;
-    flex-shrink: 0;
-  }
-  .process-dot {
-    width: 14px; height: 14px;
-    background: var(--blue);
-    border-radius: 50%;
-    flex-shrink: 0;
-    margin-top: 4px;
-  }
-  .process-line {
-    width: 2px;
-    background: var(--grey-200);
-    flex: 1;
-    min-height: 20px;
-  }
-  .process-step:last-child .process-line { display: none; }
-  .process-content {
-    padding: 0 0 20px 14px;
-    flex: 1;
-  }
-  .process-week {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--blue);
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 3px;
-  }
-  .process-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
-  .process-body { font-size: 13px; color: var(--grey-700); }
-
-  /* FOOTER */
-  footer {
-    background: var(--navy);
-    color: var(--grey-400);
-    text-align: center;
-    padding: 24px 40px;
-    font-size: 12px;
-    margin-top: 40px;
-  }
-  footer strong { color: white; }
-
-  /* DIVIDER */
-  .divider {
-    height: 1px;
-    background: var(--grey-200);
-    margin: 28px 0;
-  }
-
-  h3.sub { font-size: 15px; font-weight: 600; color: var(--navy); margin: 20px 0 10px; }
-  p.body { font-size: 14px; color: var(--grey-700); margin-bottom: 10px; line-height: 1.65; }
+:root {
+--navy: #0f2137; --navy-mid: #1a3452; --blue: #1d5fa8; --blue-light: #2e7dd4;
+--sky: #e8f2fc; --amber: #e8a020; --amber-light: #fef6e4; --red: #c0392b;
+--red-light: #fdecea; --green: #1a7a4a; --green-light: #e8f5ee; --white: #ffffff;
+--off-white: #f7f9fc; --grey-100: #f0f4f8; --grey-200: #dde4ed; --grey-400: #8fa3bd;
+--grey-700: #3d5166; --text: #1c2b3a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--text); font-size: 15px; line-height: 1.65; }
+.topbar { background: var(--navy); padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; }
+.topbar-brand { color: var(--white); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+.topbar-meta { color: var(--grey-400); font-size: 12px; font-family: 'DM Mono', monospace; }
+.confidential-badge { background: var(--red); color: white; font-size: 10px; font-weight: 600; letter-spacing: 2px; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; }
+.hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1d3d60 100%); padding: 60px 40px 50px; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(29,95,168,0.25) 0%, transparent 70%); border-radius: 50%; }
+.hero::after { content: ''; position: absolute; bottom: -40px; left: 30%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(232,160,32,0.1) 0%, transparent 70%); border-radius: 50%; }
+.hero-eyebrow { font-family: 'DM Mono', monospace; color: var(--amber); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.hero-org { font-family: 'Playfair Display', serif; color: var(--white); font-size: 52px; font-weight: 900; line-height: 1; margin-bottom: 12px; }
+.hero-role { color: rgba(255,255,255,0.75); font-size: 20px; font-weight: 300; margin-bottom: 32px; }
+.hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.stat { display: flex; flex-direction: column; gap: 2px; }
+.stat-val { font-family: 'Playfair Display', serif; color: var(--white); font-size: 28px; font-weight: 700; line-height: 1; }
+.stat-label { color: var(--grey-400); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; }
+.layout { display: grid; grid-template-columns: 1fr 320px; gap: 32px; padding: 40px 40px; max-width: 1100px; margin: 0 auto; }
+.section { margin-bottom: 36px; }
+.section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--grey-200); }
+.section-num { background: var(--blue); color: white; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.section-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy); font-weight: 700; }
+.card { background: white; border-radius: 10px; border: 1px solid var(--grey-200); padding: 24px; margin-bottom: 16px; }
+.card-title { font-weight: 600; font-size: 14px; color: var(--navy); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.info-box { border-radius: 8px; padding: 18px 20px; margin-bottom: 14px; }
+.info-box.blue { background: var(--sky); border-left: 4px solid var(--blue); }
+.info-box.amber { background: var(--amber-light); border-left: 4px solid var(--amber); }
+.info-box.red { background: var(--red-light); border-left: 4px solid var(--red); }
+.info-box.green { background: var(--green-light); border-left: 4px solid var(--green); }
+.info-box.navy { background: var(--grey-100); border-left: 4px solid var(--navy); }
+.info-box-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+.info-box.blue .info-box-label { color: var(--blue); }
+.info-box.amber .info-box-label { color: var(--amber); }
+.info-box.red .info-box-label { color: var(--red); }
+.info-box.green .info-box-label { color: var(--green); }
+.info-box.navy .info-box-label { color: var(--navy); }
+.info-box p { font-size: 14px; color: var(--grey-700); line-height: 1.6; }
+.failure-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.failure-card { background: white; border: 1px solid var(--grey-200); border-radius: 10px; overflow: hidden; }
+.failure-card-header { background: var(--navy); color: white; padding: 12px 18px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; }
+.failure-card-body { padding: 16px 18px; }
+.failure-card-body p { font-size: 13.5px; color: var(--grey-700); margin-bottom: 8px; }
+.failure-label { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; margin-bottom: 10px; }
+.failure-label.red { background: var(--red-light); color: var(--red); }
+.priority-list { display: flex; flex-direction: column; gap: 12px; }
+.priority-item { display: flex; gap: 16px; background: white; border: 1px solid var(--grey-200); border-radius: 10px; padding: 18px 20px; align-items: flex-start; }
+.priority-num { background: var(--blue); color: white; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.priority-content h4 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 5px; }
+.priority-content p { font-size: 13.5px; color: var(--grey-700); }
+.data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.data-table th { background: var(--navy); color: white; padding: 10px 14px; text-align: left; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+.data-table td { padding: 11px 14px; border-bottom: 1px solid var(--grey-200); vertical-align: top; }
+.data-table tr:nth-child(even) td { background: var(--grey-100); }
+.data-table tr:hover td { background: var(--sky); }
+.data-table td:first-child { font-weight: 600; color: var(--navy); width: 32%; }
+.timeline { position: relative; }
+.timeline-item { display: flex; gap: 16px; margin-bottom: 16px; align-items: flex-start; }
+.timeline-month { background: var(--navy); color: white; font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; padding: 4px 10px; border-radius: 4px; white-space: nowrap; min-width: 72px; text-align: center; margin-top: 2px; }
+.timeline-month.highlight { background: var(--blue); }
+.timeline-month.amber { background: var(--amber); }
+.timeline-content h4 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+.timeline-content p { font-size: 13px; color: var(--grey-700); }
+.non-neg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.non-neg-item { background: white; border: 1px solid var(--grey-200); border-top: 3px solid var(--blue); border-radius: 8px; padding: 16px; }
+.non-neg-item.dealbreaker { border-top-color: var(--red); }
+.non-neg-title { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+.non-neg-body { font-size: 13px; color: var(--grey-700); }
+.sidebar { display: flex; flex-direction: column; gap: 20px; }
+.sidebar-card { background: white; border: 1px solid var(--grey-200); border-radius: 10px; overflow: hidden; }
+.sidebar-card-header { background: var(--navy); color: white; padding: 12px 18px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+.sidebar-card-body { padding: 16px 18px; }
+.sidebar-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--grey-100); font-size: 13px; }
+.sidebar-row:last-child { border-bottom: none; }
+.sidebar-label { color: var(--grey-400); font-size: 12px; }
+.sidebar-val { font-weight: 600; color: var(--navy); text-align: right; max-width: 60%; }
+.action-list { display: flex; flex-direction: column; gap: 8px; }
+.action-item { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--grey-700); }
+.action-item::before { content: '→'; color: var(--amber); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin: 3px 3px 3px 0; }
+.tag.blue { background: var(--sky); color: var(--blue); }
+.tag.amber { background: var(--amber-light); color: #b07d10; }
+.tag.green { background: var(--green-light); color: var(--green); }
+.tag.red { background: var(--red-light); color: var(--red); }
+.tag.navy { background: var(--grey-100); color: var(--navy); }
+ul.nice { padding-left: 0; list-style: none; }
+ul.nice li { padding: 5px 0 5px 20px; position: relative; font-size: 14px; color: var(--grey-700); line-height: 1.5; }
+ul.nice li::before { content: '•'; color: var(--blue); font-weight: 700; position: absolute; left: 0; }
+.process-steps { display: flex; flex-direction: column; gap: 0; }
+.process-step { display: flex; gap: 0; }
+.process-step-left { display: flex; flex-direction: column; align-items: center; width: 40px; flex-shrink: 0; }
+.process-dot { width: 14px; height: 14px; background: var(--blue); border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.process-line { width: 2px; background: var(--grey-200); flex: 1; min-height: 20px; }
+.process-step:last-child .process-line { display: none; }
+.process-content { padding: 0 0 20px 14px; flex: 1; }
+.process-week { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--blue); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+.process-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+.process-body { font-size: 13px; color: var(--grey-700); }
+footer { background: var(--navy); color: var(--grey-400); text-align: center; padding: 24px 40px; font-size: 12px; margin-top: 40px; }
+footer strong { color: white; }
+h3.sub { font-size: 15px; font-weight: 600; color: var(--navy); margin: 20px 0 10px; }
+p.body { font-size: 14px; color: var(--grey-700); margin-bottom: 10px; line-height: 1.65; }
 </style>
 </head>
 <body>
@@ -509,7 +124,7 @@
 </div>
 
 <div class="hero">
-  <div class="hero-eyebrow">Search Brief — Supporter Engagement & Fundraising Manager</div>
+  <div class="hero-eyebrow">Search Brief — Supporter Engagement &amp; Fundraising Manager</div>
   <div class="hero-org">Go Beyond</div>
   <div class="hero-role">Children's charity &nbsp;·&nbsp; Remote &nbsp;·&nbsp; £35,000–£37,000</div>
   <div class="hero-stats">
@@ -522,523 +137,352 @@
 </div>
 
 <div class="layout">
-  <!-- MAIN COLUMN -->
-  <main>
+<main>
 
-    <!-- SECTION 1: CONTEXT -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-num">1</div>
-        <div class="section-title">What We Know — The Situation</div>
-      </div>
-
-      <div class="info-box blue">
-        <div class="info-box-label">Context</div>
-        <p>Go Beyond is a 32-year-old children's charity that gives vulnerable kids — young carers, children in poverty, those bereaved or bullied — life-changing residential breaks at centres in Cornwall and Derbyshire. Entirely self-funded at £1.8m per year. No government money. Everything fundraised.</p>
-      </div>
-
-      <div class="info-box amber">
-        <div class="info-box-label">Why this hire is happening</div>
-        <p>Two failed hires in this role in quick succession. Both interviewed brilliantly. Both fell apart in post. Sara is now Director and personally holding the function together alongside her Trusts Manager. The role has been vacant long enough that the team is stretched and certain activities — notably the newsletter, proper challenge event stewardship, and any structured regular giver programme — have effectively stalled.</p>
-      </div>
-
-      <div class="failure-grid">
-        <div class="failure-card">
-          <div class="failure-card-header">Hire 1 — "Izzy"</div>
-          <div class="failure-card-body">
-            <span class="failure-label red">Fired — ~6 months</span>
-            <p>Background: charity marketing, then moved into fundraising. CV claimed she'd run direct marketing campaigns that brought in new regular givers. Sara suspects she was adjacent to those campaigns, not running them.</p>
-            <p>The data person at the time was strong and largely sorted the database — but Izzy had no understanding of what was happening and actually set it back when she got involved.</p>
-          </div>
-        </div>
-        <div class="failure-card">
-          <div class="failure-card-header">Hire 2 — "Lena"</div>
-          <div class="failure-card-body">
-            <span class="failure-label red">Let go — ~5 months</span>
-            <p>Background: community fundraising, claimed experience in direct marketing and challenge events. Did a live roundtable task in the final interview — was brilliant. Said nothing in team meetings once she started.</p>
-            <p>Gave a Mailchimp plugin to a developer which mass-imported the entire database onto the mailing list (thousands without contact info). Didn't do a newsletter. Database was left in a mess.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="info-box red">
-        <div class="info-box-label">Key insight from Sara</div>
-        <p>"I think we knew quite early on with Izzy and with Lena where the red flags were. But it's very hard in HR to prove it… you have to give them a chance." Both were neurodivergent — Sara flagged this not as a reason, but as context. Both also claimed direct marketing campaign experience they likely didn't own. <strong>The CVs sounded right. The interviews were convincing. The execution wasn't there.</strong></p>
-      </div>
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">What We Know — The Situation</div>
     </div>
 
-    <!-- SECTION 2: YEAR ONE PRIORITIES -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-num">2</div>
-        <div class="section-title">Year One — What Sara Actually Needs</div>
+    <div class="info-box blue">
+      <div class="info-box-label">Context</div>
+      <p>Go Beyond is a 32-year-old children's charity that gives vulnerable kids — young carers, children in poverty, those bereaved or bullied — life-changing residential breaks at centres in Cornwall and Derbyshire. Entirely self-funded at £1.8m per year. No government money. Everything fundraised.</p>
+    </div>
+
+    <div class="info-box amber">
+      <div class="info-box-label">Why this hire is happening</div>
+      <p>Two failed hires in this role in quick succession. Both interviewed brilliantly. Both fell apart in post. Sara is now Director and personally holding the function together alongside her Trusts Manager. The role has been vacant long enough that the team is stretched and certain activities — notably the newsletter, proper challenge event stewardship, and any structured regular giver programme — have effectively stalled.</p>
+    </div>
+
+    <div class="failure-grid">
+      <div class="failure-card">
+        <div class="failure-card-header">Hire 1</div>
+        <div class="failure-card-body">
+          <span class="failure-label red">Fired — ~6 months</span>
+          <p>Background: charity marketing, then moved into fundraising. CV claimed she'd run direct marketing campaigns that brought in new regular givers. Sara suspects she was adjacent to those campaigns, not running them.</p>
+          <p>The data person at the time was strong and largely sorted the database — but this hire had no understanding of what was happening and actually set it back when she got involved.</p>
+        </div>
       </div>
-
-      <p class="body">Sara's exact words: "I want them to be coming to me with ideas and then putting them in place." The three priorities she named:</p>
-
-      <div class="priority-list">
-        <div class="priority-item">
-          <div class="priority-num">1</div>
-          <div class="priority-content">
-            <h4>Own the Database — Strategy, Not Just Operations</h4>
-            <p>Not just keeping data ticking over — coming in with a strategy. What's wrong with it? What do we need it to do? Setting up a monthly data dashboard with income analysis by segment. Being able to say "the appeal underperformed because the £10-£20 donor ask wasn't prominent enough in the letter." The previous person actually set the database back when she tried to engage with it. Sara wants someone who leads from the front here.</p>
-          </div>
-        </div>
-        <div class="priority-item">
-          <div class="priority-num">2</div>
-          <div class="priority-content">
-            <h4>Build Supporter Journeys — All Income Streams</h4>
-            <p>No proper supporter journeys currently exist for regular givers, challenge event runners, or Ice Cream Moments donors. Sara gave a specific example: the ICM campaign offered a virtual ice cream tribute — no one had tested the donor journey or thought about how the recipient receives it, or how they share it. The right person designs the journey, tests it, then improves it. "Half a day to write it — it's not rocket science."</p>
-          </div>
-        </div>
-        <div class="priority-item">
-          <div class="priority-num">3</div>
-          <div class="priority-content">
-            <h4>Write a Strategy + Build Pipelines</h4>
-            <p>An 18-month to 2-year delivery plan covering challenge events, legacies, appeals, regular givers and the database. Proper pipelines. "The previous people just wrote an appeal letter, didn't matter — whereas there are targets attached." Sara wants forecast thinking: "We need 20 more regular givers, we'll get them from Ice Cream Moments, that brings in £X — and once they've given, we'll uplift 10% of them."</p>
-          </div>
-        </div>
-        <div class="priority-item">
-          <div class="priority-num">4</div>
-          <div class="priority-content">
-            <h4>Launch the Legacy Programme</h4>
-            <p>Infrastructure already exists and is ready to go. No one has had capacity to push it live. "We've got an ageing supporter base and we don't do any active promotion for legacy." Sara specifically called this out as a first-six-months win. Free Wills Week, targeted comms to older regular givers — all of it sits with this person.</p>
-          </div>
+      <div class="failure-card">
+        <div class="failure-card-header">Hire 2</div>
+        <div class="failure-card-body">
+          <span class="failure-label red">Let go — ~5 months</span>
+          <p>Background: community fundraising, claimed experience in direct marketing and challenge events. Did a live roundtable task in the final interview — was brilliant. Said nothing in team meetings once she started.</p>
+          <p>Gave a Mailchimp plugin to a developer which mass-imported the entire database onto the mailing list (thousands without contact info). Didn't do a newsletter. Database was left in a mess.</p>
         </div>
       </div>
     </div>
 
-    <!-- SECTION 3: THE SUPPORTER BASE -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-num">3</div>
-        <div class="section-title">The Supporter Base — Raw Numbers</div>
+    <div class="info-box red">
+      <div class="info-box-label">Key insight from Sara</div>
+      <p>"I think we knew quite early on with both hires where the red flags were. But it's very hard in HR to prove it… you have to give them a chance." Both were neurodivergent — Sara flagged this not as a reason, but as context. Both also claimed direct marketing campaign experience they likely didn't own. <strong>The CVs sounded right. The interviews were convincing. The execution wasn't there.</strong></p>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Year One — What Sara Actually Needs</div>
+    </div>
+    <p class="body">Sara's exact words: "I want them to be coming to me with ideas and then putting them in place." The three priorities she named:</p>
+    <div class="priority-list">
+      <div class="priority-item">
+        <div class="priority-num">1</div>
+        <div class="priority-content">
+          <h4>Own the Database — Strategy, Not Just Operations</h4>
+          <p>Not just keeping data ticking over — coming in with a strategy. What's wrong with it? What do we need it to do? Setting up a monthly data dashboard with income analysis by segment. Being able to say "the appeal underperformed because the £10-£20 donor ask wasn't prominent enough in the letter." The previous person actually set the database back when she tried to engage with it. Sara wants someone who leads from the front here.</p>
+        </div>
       </div>
-
-      <table class="data-table" style="margin-bottom:16px;">
-        <thead>
-          <tr><th>Segment</th><th>Numbers</th><th>Status / Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Appeal donors (individual)</td>
-            <td>~500 active</td>
-            <td>Get 4 segmented appeal letters per year. Regular givers receive a "thank you" version. That's it.</td>
-          </tr>
-          <tr>
-            <td>Regular givers</td>
-            <td>~200–300</td>
-            <td>Generating ~£90k/year. Many giving for 10+ years. No dedicated stewardship. Average gift TBC (Sara to send).</td>
-          </tr>
-          <tr>
-            <td>Challenge event participants</td>
-            <td>~35 (2025)</td>
-            <td>Mostly half marathons. Largely comes through corporate connections. No post-event stewardship journey in place.</td>
-          </tr>
-          <tr>
-            <td>Volunteers</td>
-            <td>Large pool</td>
-            <td>Agency research found these are <em>most engaged</em> people. Give up a full week. Hugely underutilised as future fundraisers/legators.</td>
-          </tr>
-          <tr>
-            <td>Referral agents</td>
-            <td>Large pool</td>
-            <td>Teachers/social workers who fill in forms to send kids on breaks. Also flagged by agency as highly engaged. Largely untouched for fundraising.</td>
-          </tr>
-          <tr>
-            <td>Alumni ("Going Beyond" programme)</td>
-            <td>21,000+ breaks given / ~20 in contact</td>
-            <td>Research done, BBC interest secured, a willing interviewee ready. Just needs someone to launch it. Massive untapped opportunity.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="info-box amber">
-        <div class="info-box-label">Big insight from Sara</div>
-        <p>An agency they worked with last year said: <em>"Your most engaged people are your referral agents and volunteers."</em> They believe in the cause. They give their time. The strategy for growing the supporter base long-term is as much about converting these people as it is about new donor acquisition. This person needs to understand that and build it into the plan.</p>
+      <div class="priority-item">
+        <div class="priority-num">2</div>
+        <div class="priority-content">
+          <h4>Build Supporter Journeys — All Income Streams</h4>
+          <p>No proper supporter journeys currently exist for regular givers, challenge event runners, or Ice Cream Moments donors. Sara gave a specific example: the ICM campaign offered a virtual ice cream tribute — no one had tested the donor journey or thought about how the recipient receives it, or how they share it. The right person designs the journey, tests it, then improves it. "Half a day to write it — it's not rocket science."</p>
+        </div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">3</div>
+        <div class="priority-content">
+          <h4>Write a Strategy + Build Pipelines</h4>
+          <p>An 18-month to 2-year delivery plan covering challenge events, legacies, appeals, regular givers and the database. Proper pipelines. "The previous people just wrote an appeal letter, didn't matter — whereas there are targets attached." Sara wants forecast thinking: "We need 20 more regular givers, we'll get them from Ice Cream Moments, that brings in £X — and once they've given, we'll uplift 10% of them."</p>
+        </div>
+      </div>
+      <div class="priority-item">
+        <div class="priority-num">4</div>
+        <div class="priority-content">
+          <h4>Launch the Legacy Programme</h4>
+          <p>Infrastructure already exists and is ready to go. No one has had capacity to push it live. "We've got an ageing supporter base and we don't do any active promotion for legacy." Sara specifically called this out as a first-six-months win. Free Wills Week, targeted comms to older regular givers — all of it sits with this person.</p>
+        </div>
       </div>
     </div>
+  </div>
 
-    <!-- SECTION 4: CAMPAIGNS CALENDAR -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-num">4</div>
-        <div class="section-title">Campaigns Calendar — What This Person Owns</div>
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">The Supporter Base — Raw Numbers</div>
+    </div>
+    <table class="data-table" style="margin-bottom:16px;">
+      <thead><tr><th>Segment</th><th>Numbers</th><th>Status / Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Appeal donors (individual)</td><td>~500 active</td><td>Get 4 segmented appeal letters per year. Regular givers receive a "thank you" version. That's it.</td></tr>
+        <tr><td>Regular givers</td><td>~200–300</td><td>Generating ~£90k/year. Many giving for 10+ years. No dedicated stewardship. Average gift TBC (Sara to send).</td></tr>
+        <tr><td>Challenge event participants</td><td>~35 (2025)</td><td>Mostly half marathons. Largely comes through corporate connections. No post-event stewardship journey in place.</td></tr>
+        <tr><td>Volunteers</td><td>Large pool</td><td>Agency research found these are <em>most engaged</em> people. Give up a full week. Hugely underutilised as future fundraisers/legators.</td></tr>
+        <tr><td>Referral agents</td><td>Large pool</td><td>Teachers/social workers who fill in forms to send kids on breaks. Also flagged by agency as highly engaged. Largely untouched for fundraising.</td></tr>
+        <tr><td>Alumni ("Going Beyond" programme)</td><td>21,000+ breaks given / ~20 in contact</td><td>Research done, BBC interest secured, a willing interviewee ready. Just needs someone to launch it. Massive untapped opportunity.</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box amber">
+      <div class="info-box-label">Big insight from Sara</div>
+      <p>An agency they worked with last year said: <em>"Your most engaged people are your referral agents and volunteers."</em> They believe in the cause. They give their time. The strategy for growing the supporter base long-term is as much about converting these people as it is about new donor acquisition. This person needs to understand that and build it into the plan.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">Campaigns Calendar — What This Person Owns</div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-month">Mar–Apr</div><div class="timeline-content"><h4>Spring Appeal</h4><p>Annual appeal letter, late March. Segmented — regular givers get a "thank you" version. Currently written ad hoc.</p></div></div>
+      <div class="timeline-item"><div class="timeline-month highlight">Jun–Sep</div><div class="timeline-content"><h4>Ice Cream Moments — FLAGSHIP</h4><p>Launches 1 June. Runs all summer. This year: Louis Theroux, James Acaster, David Gower, Jenny Agutter backing it. Three sub-campaigns: summer holidays for young carers, school holiday safety for at-risk kids, and holiday hunger. Plan already written with timelines. New person observes, analyses, and starts planning 2027 now. Trustees want proper marketing spend behind it — "let's go viral."</p></div></div>
+      <div class="timeline-item"><div class="timeline-month">Jun–Sep</div><div class="timeline-content"><h4>Summer Appeal Letter</h4><p>ICM-themed. Sits alongside the campaign.</p></div></div>
+      <div class="timeline-item"><div class="timeline-month">Oct</div><div class="timeline-content"><h4>Autumn Appeal</h4><p>Another appeal letter. Currently unplanned beyond the calendar slot.</p></div></div>
+      <div class="timeline-item"><div class="timeline-month amber">Nov–Dec</div><div class="timeline-content"><h4>Christmas Campaign + Appeal</h4><p>The other major moment. Appeal letter plus campaign running alongside it.</p></div></div>
+      <div class="timeline-item"><div class="timeline-month">Year-round</div><div class="timeline-content"><h4>Challenge Events</h4><p>Half marathons across the year. ~35 participants in 2025, aiming to grow. Overseas treks, parachute jumps, virtual challenges (100 squats a day, sea swimming) all on the wishlist. No post-event stewardship yet.</p></div></div>
+      <div class="timeline-item"><div class="timeline-month">Year-round</div><div class="timeline-content"><h4>Regular Givers Programme</h4><p>Currently just the segmented appeal letters x4. Building out a proper programme is a year-one priority.</p></div></div>
+      <div class="timeline-item"><div class="timeline-month">TBC</div><div class="timeline-content"><h4>Legacy — Ready to Launch</h4><p>All set up. Just needs someone to push it live. Free Wills Week, targeted comms. Huge potential with ageing donor base.</p></div></div>
+      <div class="timeline-item"><div class="timeline-month">TBC</div><div class="timeline-content"><h4>"Going Beyond" Alumni Programme</h4><p>21,000+ children have been on a break. Contact with about 20 of them. Research done, geographic targeting identified (mostly SW). BBC interested. Willing interviewee secured. Just needs a launcher.</p></div></div>
+    </div>
+    <div class="info-box navy">
+      <div class="info-box-label">Comms infrastructure</div>
+      <p>Just switched to <strong>Constant Contact</strong> for email. Previous Mailchimp mailing list was corrupted by a plugin error (entire database imported, thousands without valid contact info). List is being rebuilt. Monthly newsletter is the goal — hadn't been sent under the last hire. Content plan exists and is being updated.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">The Team — Honest Assessment</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Direct Report 1 — Digital Marketing Officer</div>
+      <span class="tag red">⚠ Jury's Out</span>
+      <p class="body" style="margin-top:10px;">Lovely person. Actually came on a Go Beyond break as a child — genuinely passionate about the charity. Did well in interview. But currently has no working knowledge of the job. Social media, paid socials, e-newsletter, website — she's being handheld. Someone else is essentially doing the work while she observes. Sara's direct quote: <em>"Right now, if I had to hand over the keys to the website to her, I wouldn't trust her to do it."</em></p>
+      <p class="body">This person will need close line management, active training and a clear early performance review. The new manager may conclude she's not the right fit — and Sara is open to reshaping the team structure if needed.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Direct Report 2 — Data &amp; Admin / Challenge Events Officer</div>
+      <span class="tag green">▲ Promising — Just Starting</span>
+      <p class="body" style="margin-top:10px;">Starting in 2 weeks, based in Chippenham. Came from another charity where she managed their Raiser's Edge database. During screening, proactively sent examples of challenge event supporter journey letters she'd used in her previous role. Sara's assessment: "A lot more experienced" and "I hope she works out — you just know when they start."</p>
+      <p class="body">This is the person who will be the database operator day-to-day. If she's strong on RE, the structural vulnerability that brought the last hire down is reduced — but the Supporter Care Manager still needs to be able to oversee and run queries themselves.</p>
+    </div>
+    <div class="info-box blue">
+      <div class="info-box-label">Wider team as resource</div>
+      <p>Sara was clear: when campaigns like Ice Cream Moments are running, the whole fundraising team pitches in — trust fundraisers write social content, everyone gets involved. This is cultural. The new person won't just have two direct reports — they'll have the energy of a seven-person team behind the big moments. "It gives them something else to do and wider experience."</p>
+    </div>
+    <h3 class="sub">Sara's Management Style</h3>
+    <ul class="nice">
+      <li>Structured two-week induction with daily morning check-ins</li>
+      <li>Daily Teams contact until the person doesn't need it — Sara's phrase: "until they don't want me to"</li>
+      <li>Formal monthly one-to-ones throughout probation</li>
+      <li>Very relaxed style day-to-day — chatty, collaborative, "brains trust" culture ("what do you think of this idea?")</li>
+      <li>Trusts Manager and Corporate Manager both speak to Sara multiple times a day on Teams</li>
+      <li>Six-month probation period with formal review</li>
+      <li>Annual pay review benchmarked against sector (January delivery)</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Candidate Profile &amp; Non-Negotiables</div>
+    </div>
+    <div class="info-box blue">
+      <div class="info-box-label">Sara's view on background</div>
+      <p>"It's a vast job with such a big umbrella covering a lot — I'm not expecting anyone to be great at all things. What they need is to go: 'I can't do that, but I could manage that.'" She explicitly said CVs will always have something slightly missing. Attitude and logical/strategic thinking matter as much as experience. Her corporate fundraiser came from a stressful corporate environment and brought a fresh approach — Sara is open to that model here too.</p>
+    </div>
+    <div class="info-box green">
+      <div class="info-box-label">Open to</div>
+      <p>Commercial direct marketing backgrounds. Agency-side experience (DMS, Wood for Trees, Salison Group etc). Individual giving managers with marcomms experience. People who have not managed a team before but are willing to invest in management training (British Growth Fund currently running a 6-week programme pro bono for Go Beyond). Charity sector not essential.</p>
+    </div>
+    <h3 class="sub">Non-Negotiables</h3>
+    <div class="non-neg-grid">
+      <div class="non-neg-item">
+        <div class="non-neg-title">Financially literate about targets</div>
+        <div class="non-neg-body">Sara's example: ICM is £20k at £3.50 per virtual ice cream. They need to know how many they need, then think about how to uplift. "The last two didn't even ask what the targets were. Didn't do the maths." Must be aware they are a fundraiser, not just a marketer.</div>
       </div>
-
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-month">Mar–Apr</div>
-          <div class="timeline-content">
-            <h4>Spring Appeal</h4>
-            <p>Annual appeal letter, late March. Segmented — regular givers get a "thank you" version. Currently written ad hoc.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-month highlight">Jun–Sep</div>
-          <div class="timeline-content">
-            <h4>Ice Cream Moments — FLAGSHIP</h4>
-            <p>Launches 1 June. Runs all summer. This year: Louis Theroux, James Acaster, David Gower, Jenny Agutter backing it. Three sub-campaigns: summer holidays for young carers, school holiday safety for at-risk kids, and holiday hunger. Plan already written with timelines. New person observes, analyses, and starts planning 2027 now. Trustees want proper marketing spend behind it — "let's go viral."</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-month">Jun–Sep</div>
-          <div class="timeline-content">
-            <h4>Summer Appeal Letter</h4>
-            <p>ICM-themed. Sits alongside the campaign.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-month">Oct</div>
-          <div class="timeline-content">
-            <h4>Autumn Appeal</h4>
-            <p>Another appeal letter. Currently unplanned beyond the calendar slot.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-month amber">Nov–Dec</div>
-          <div class="timeline-content">
-            <h4>Christmas Campaign + Appeal</h4>
-            <p>The other major moment. Appeal letter plus campaign running alongside it.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-month">Year-round</div>
-          <div class="timeline-content">
-            <h4>Challenge Events</h4>
-            <p>Half marathons across the year. ~35 participants in 2025, aiming to grow. Overseas treks, parachute jumps, virtual challenges (100 squats a day, sea swimming) all on the wishlist. No post-event stewardship yet.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-month">Year-round</div>
-          <div class="timeline-content">
-            <h4>Regular Givers Programme</h4>
-            <p>Currently just the segmented appeal letters x4. Building out a proper programme is a year-one priority.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-month">TBC</div>
-          <div class="timeline-content">
-            <h4>Legacy — Ready to Launch</h4>
-            <p>All set up. Just needs someone to push it live. Free Wills Week, targeted comms. Huge potential with ageing donor base.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-month">TBC</div>
-          <div class="timeline-content">
-            <h4>"Going Beyond" Alumni Programme</h4>
-            <p>21,000+ children have been on a break. Contact with about 20 of them. Research done, geographic targeting identified (mostly SW). BBC interested. Willing interviewee secured. Just needs a launcher.</p>
-          </div>
-        </div>
+      <div class="non-neg-item">
+        <div class="non-neg-title">Hands-on as well as strategic</div>
+        <div class="non-neg-body">Sara's words: "If they couldn't pull a report up on the database themselves, how are they going to train someone up on it?" Must be operational, not purely conceptual. Can direct and delegate — but can also do.</div>
       </div>
-
-      <div class="info-box navy">
-        <div class="info-box-label">Comms infrastructure</div>
-        <p>Just switched to <strong>Constant Contact</strong> for email. Previous Mailchimp mailing list was corrupted by a plugin error (entire database imported, thousands without valid contact info). List is being rebuilt. Monthly newsletter is the goal — hadn't been sent under the last hire. Content plan exists and is being updated.</p>
+      <div class="non-neg-item">
+        <div class="non-neg-title">Execution, not just ideas</div>
+        <div class="non-neg-body">The core failure of both previous hires. Both gave brilliant presentations. Neither delivered. Must be able to show evidence of campaigns or projects they owned end-to-end — with dates, outputs, results.</div>
+      </div>
+      <div class="non-neg-item">
+        <div class="non-neg-title">Data literacy</div>
+        <div class="non-neg-body">Not expert-level — but genuinely comfortable in Raiser's Edge (or equivalent CRM), able to run queries, understand segmentation, and understand data quality. Can oversee without being dependent on the data person.</div>
+      </div>
+      <div class="non-neg-item dealbreaker">
+        <div class="non-neg-title">⚠ Dealbreaker: purely strategic only</div>
+        <div class="non-neg-body">If they cannot be hands-on. If they see database work as beneath them. If they can only think at the macro level and rely on others to implement everything. That's the pattern that's already failed twice.</div>
+      </div>
+      <div class="non-neg-item">
+        <div class="non-neg-title">Management inexperience — not a dealbreaker</div>
+        <div class="non-neg-body">Sara's view: "We can get them a lot of training, a lot of support." The British Growth Fund management programme is available. More important that they have the right instincts and attitude toward people than a formal track record.</div>
       </div>
     </div>
+    <div class="info-box amber" style="margin-top:16px;">
+      <div class="info-box-label">The final stage task — redesigned</div>
+      <p>Previous presentations (prepared in advance, polished, brilliant) didn't predict performance. Sara now wants a <strong>live, unprepared task given on the day</strong>. She's done prepared task + roundtable — both passed, both failed in post. The new task should test thinking on their feet and specifically execution-mode thinking. Suggestion discussed: give them the regular givers scenario (£90k, no stewardship, 20% growth target) and ask for a plan — not a strategy doc — with month-by-month milestones and owners. 20 minutes, unprepared.</p>
+    </div>
+  </div>
 
-    <!-- SECTION 5: THE TEAM -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-num">5</div>
-        <div class="section-title">The Team — Honest Assessment</div>
+  <!-- SECTION 7 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-title">The Sell — Why a Passive Candidate Would Move</div>
+    </div>
+    <p class="body">Sara's exact framing: <em>"Think of this as your own company. Think of this income stream as your domain — you could make it amazing."</em> This is the line to lead with to passive candidates.</p>
+    <div class="non-neg-grid">
+      <div class="non-neg-item" style="border-top-color: var(--blue);"><div class="non-neg-title">🎬 Cultural visibility</div><div class="non-neg-body">Louis Theroux, James Acaster (he's obsessed with ice cream), David Gower, Jenny Agutter all backing Ice Cream Moments. A small charity with national-calibre celebrity endorsement.</div></div>
+      <div class="non-neg-item" style="border-top-color: var(--blue);"><div class="non-neg-title">📈 Genuine growth runway</div><div class="non-neg-body">Doubling beneficiary numbers is the strategic goal. Pop-up centres in the South East planned. If income grows, the team grows. Trust team trajectory is proof of concept.</div></div>
+      <div class="non-neg-item" style="border-top-color: var(--blue);"><div class="non-neg-title">🏗 Build something</div><div class="non-neg-body">The supporter care function essentially doesn't exist yet. No one has done this properly. For the right person, that's an extraordinary opportunity — not a problem. "It wouldn't take much."</div></div>
+      <div class="non-neg-item" style="border-top-color: var(--blue);"><div class="non-neg-title">⏰ Friday afternoons off</div><div class="non-neg-body">The whole business shuts down Friday afternoons. 28 days holiday plus bank holidays. Annual pay review benchmarked against sector. Sara described this as a genuine USP: "that's a really good seller."</div></div>
+      <div class="non-neg-item" style="border-top-color: var(--blue);"><div class="non-neg-title">🤝 Brilliant team culture</div><div class="non-neg-body">Sara: "The ones that like it, like it because of the team and the team atmosphere." Previous hires who've succeeded describe a genuinely supportive environment with no toxic management or unrealistic targets.</div></div>
+      <div class="non-neg-item" style="border-top-color: var(--blue);"><div class="non-neg-title">🏡 Remote with real options</div><div class="non-neg-body">Fully remote. But can work from a coastal cottage at the Cornwall centre for a week. Centres in Cornwall and Derbyshire — not just Zoom.</div></div>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div class="section-title">Search Process</div>
+    </div>
+    <div class="process-steps">
+      <div class="process-step"><div class="process-step-left"><div class="process-dot"></div><div class="process-line"></div></div><div class="process-content"><div class="process-week">Now — Week 2</div><div class="process-title">Market Mapping</div><div class="process-body">Build talent pool of 150–250 candidates. Target: South West, East Midlands, London. Focus on individual giving managers, direct marketing backgrounds, charity-facing agency alumni. Sara can see the live workflow.</div></div></div>
+      <div class="process-step"><div class="process-step-left"><div class="process-dot"></div><div class="process-line"></div></div><div class="process-content"><div class="process-week">Week 2–4</div><div class="process-title">Systematic Outreach</div><div class="process-body">Approach active and passive candidates. Weekly steering call Fridays at 10:30 with Sara. First one starts week of 19 May.</div></div></div>
+      <div class="process-step"><div class="process-step-left"><div class="process-dot"></div><div class="process-line"></div></div><div class="process-content"><div class="process-week">Week 4</div><div class="process-title">Competency Assessment</div><div class="process-body">All QIA candidates assessed against agreed functional and behavioural framework. Written report on each. Fast-track any exceptional candidate in a parallel process.</div></div></div>
+      <div class="process-step"><div class="process-step-left"><div class="process-dot"></div><div class="process-line"></div></div><div class="process-content"><div class="process-week">W/C 29 Jun or 3 Jul</div><div class="process-title">Final Interviews with Sara</div><div class="process-body">In-person. Location flexible depending on where candidates are based (Cornwall, Derbyshire, London, or Bristol if cluster there). Live unprepared task. 3–5 candidates maximum.</div></div></div>
+    </div>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <div class="section-title">Outstanding Actions</div>
+    </div>
+    <div class="info-box amber">
+      <div class="info-box-label">Sara to send to John</div>
+      <div class="action-list" style="margin-top:8px;">
+        <div class="action-item">Names of previous hires for LinkedIn review</div>
+        <div class="action-item">Average regular giver gift size + count of 2+ year donors</div>
+        <div class="action-item">Objectives set for previous hire (to inform candidate brief and competency framework)</div>
+        <div class="action-item">Details of major donor freelance candidate (forwarded to Sara and Michelle for decision)</div>
       </div>
-
-      <div class="card">
-        <div class="card-title">Direct Report 1 — Digital Marketing Officer</div>
-        <span class="tag red">⚠ Jury's Out</span>
-        <p class="body" style="margin-top:10px;">Lovely person. Actually came on a Go Beyond break as a child — genuinely passionate about the charity. Did well in interview. But currently has no working knowledge of the job. Social media, paid socials, e-newsletter, website — she's being handheld. Someone else is essentially doing the work while she observes. Sara's direct quote: <em>"Right now, if I had to hand over the keys to the website to her, I wouldn't trust her to do it."</em></p>
-        <p class="body">This person will need close line management, active training and a clear early performance review. The new manager may conclude she's not the right fit — and Sara is open to reshaping the team structure if needed.</p>
+    </div>
+    <div class="info-box blue">
+      <div class="info-box-label">John to action</div>
+      <div class="action-list" style="margin-top:8px;">
+        <div class="action-item">Send this internal brief and candidate brief to Sara</div>
+        <div class="action-item">Draft competency questions (functional + behavioural) — share with Sara for review</div>
+        <div class="action-item">Send 6-week Friday 10:30 recurring diary invites</div>
+        <div class="action-item">Send major donor FTC candidate CV and salary expectations to Sara</div>
+        <div class="action-item">Launch job ad early next week</div>
+        <div class="action-item">Begin talent pool build — start with London Landmarks runners, Bristol agency alumni, individual giving managers with marcomms background</div>
       </div>
+    </div>
+  </div>
 
-      <div class="card">
-        <div class="card-title">Direct Report 2 — Data & Admin / Challenge Events Officer</div>
-        <span class="tag green">▲ Promising — Just Starting</span>
-        <p class="body" style="margin-top:10px;">Starting in 2 weeks, based in Chippenham. Came from another charity where she managed their Raiser's Edge database. During screening, proactively sent examples of challenge event supporter journey letters she'd used in her previous role. Sara's assessment: "A lot more experienced" and "I hope she works out — you just know when they start."</p>
-        <p class="body">This is the person who will be the database operator day-to-day. If she's strong on RE, the structural vulnerability that brought the last hire down is reduced — but the Supporter Care Manager still needs to be able to oversee and run queries themselves.</p>
-      </div>
+</main>
 
-      <div class="info-box blue">
-        <div class="info-box-label">Wider team as resource</div>
-        <p>Sara was clear: when campaigns like Ice Cream Moments are running, the whole fundraising team pitches in — trust fundraisers write social content, everyone gets involved. This is cultural. The new person won't just have two direct reports — they'll have the energy of a seven-person team behind the big moments. "It gives them something else to do and wider experience."</p>
-      </div>
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-card">
+    <div class="sidebar-card-header">Role Parameters</div>
+    <div class="sidebar-card-body">
+      <div class="sidebar-row"><span class="sidebar-label">Title</span><span class="sidebar-val">Supporter Engagement &amp; Fundraising Manager</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Salary</span><span class="sidebar-val">£35,000–£37,000 (some flex for exceptional candidate)</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Hours</span><span class="sidebar-val">Full-time (strong preference). FT preferred given team management.</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Location</span><span class="sidebar-val">Fully remote. South West / East Midlands preferred pools.</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Travel</span><span class="sidebar-val">Periodic — Cornwall + Derbyshire centres</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Reports to</span><span class="sidebar-val">Sara (Director of Fundraising)</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Direct reports</span><span class="sidebar-val">Digital Marketing Officer + Data &amp; Admin / Challenge Events Officer</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">CRM</span><span class="sidebar-val">Raiser's Edge + Omatic (automation). Constant Contact (email).</span></div>
+    </div>
+  </div>
 
-      <h3 class="sub">Sara's Management Style</h3>
+  <div class="sidebar-card">
+    <div class="sidebar-card-header">Benefits</div>
+    <div class="sidebar-card-body">
+      <div class="sidebar-row"><span class="sidebar-label">Holiday</span><span class="sidebar-val">28 days + bank holidays</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Friday afternoons</span><span class="sidebar-val">Business shuts down — everyone off</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Pay review</span><span class="sidebar-val">Annual (Jan delivery, benchmarked to sector)</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Pension</span><span class="sidebar-val">Yes (details TBC)</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">WFH</span><span class="sidebar-val">Fully remote with option to use centres</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Management training</span><span class="sidebar-val">British Growth Fund 6-week programme available</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Probation</span><span class="sidebar-val">6 months with formal review</span></div>
+    </div>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-header">Target Talent Pools</div>
+    <div class="sidebar-card-body">
+      <p style="font-size:13px; color:var(--grey-700); margin-bottom:12px;">Where to look:</p>
+      <span class="tag blue">Individual Giving Managers</span>
+      <span class="tag blue">Direct Marketing Managers</span>
+      <span class="tag blue">Marcomms w/ fundraising</span>
+      <span class="tag navy">DMS / Wood for Trees alumni</span>
+      <span class="tag navy">Salison Group / Edit</span>
+      <span class="tag navy">Charity-facing agencies</span>
+      <span class="tag green">South West</span>
+      <span class="tag green">East Midlands</span>
+      <span class="tag amber">London (salary risk)</span>
+      <div style="margin-top:12px; padding-top:12px; border-top:1px solid var(--grey-200); font-size:12px; color:var(--grey-700);"><strong style="color:var(--navy);">Check:</strong> London Landmarks half marathon runners for Go Beyond. Any event participants not yet followed up.</div>
+    </div>
+  </div>
+
+  <div class="sidebar-card">
+    <div class="sidebar-card-header">Screening Red Flags</div>
+    <div class="sidebar-card-body">
       <ul class="nice">
-        <li>Structured two-week induction with daily morning check-ins</li>
-        <li>Daily Teams contact until the person doesn't need it — Sara's phrase: "until they don't want me to"</li>
-        <li>Formal monthly one-to-ones throughout probation</li>
-        <li>Very relaxed style day-to-day — chatty, collaborative, "brains trust" culture ("what do you think of this idea?")</li>
-        <li>Trusts Manager and Corporate Manager both speak to Sara multiple times a day on Teams</li>
-        <li>Six-month probation period with formal review</li>
-        <li>Annual pay review benchmarked against sector (January delivery)</li>
+        <li>Claims to have "run" campaigns they were adjacent to</li>
+        <li>Great presenter, vague on specifics of what they personally did</li>
+        <li>No curiosity about income targets or financial outcomes</li>
+        <li>Says they'd "rely on the data person" for database queries</li>
+        <li>Purely strategic — no hands-on delivery examples</li>
+        <li>Struggles when asked to walk through month-one specifics</li>
       </ul>
     </div>
+  </div>
 
-    <!-- SECTION 6: CANDIDATE PROFILE -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-num">6</div>
-        <div class="section-title">Candidate Profile & Non-Negotiables</div>
-      </div>
-
-      <div class="info-box blue">
-        <div class="info-box-label">Sara's view on background</div>
-        <p>"It's a vast job with such a big umbrella covering a lot — I'm not expecting anyone to be great at all things. What they need is to go: 'I can't do that, but I could manage that.'" She explicitly said CVs will always have something slightly missing. Attitude and logical/strategic thinking matter as much as experience. Her corporate fundraiser came from a stressful corporate environment and brought a fresh approach — Sara is open to that model here too.</p>
-      </div>
-
-      <div class="info-box green">
-        <div class="info-box-label">Open to</div>
-        <p>Commercial direct marketing backgrounds. Agency-side experience (DMS, Wood for Trees, Salison Group etc). Individual giving managers with marcomms experience. People who have not managed a team before but are willing to invest in management training (British Growth Fund currently running a 6-week programme pro bono for Go Beyond). Charity sector not essential.</p>
-      </div>
-
-      <h3 class="sub">Non-Negotiables</h3>
-      <div class="non-neg-grid">
-        <div class="non-neg-item">
-          <div class="non-neg-title">Financially literate about targets</div>
-          <div class="non-neg-body">Sara's example: ICM is £20k at £3.50 per virtual ice cream. They need to know how many they need, then think about how to uplift. "The last two didn't even ask what the targets were. Didn't do the maths." Must be aware they are a fundraiser, not just a marketer.</div>
-        </div>
-        <div class="non-neg-item">
-          <div class="non-neg-title">Hands-on as well as strategic</div>
-          <div class="non-neg-body">Sara's words: "If they couldn't pull a report up on the database themselves, how are they going to train someone up on it?" Must be operational, not purely conceptual. Can direct and delegate — but can also do.</div>
-        </div>
-        <div class="non-neg-item">
-          <div class="non-neg-title">Execution, not just ideas</div>
-          <div class="non-neg-body">The core failure of both previous hires. Both gave brilliant presentations. Neither delivered. Must be able to show evidence of campaigns or projects they owned end-to-end — with dates, outputs, results.</div>
-        </div>
-        <div class="non-neg-item">
-          <div class="non-neg-title">Data literacy</div>
-          <div class="non-neg-body">Not expert-level — but genuinely comfortable in Raiser's Edge (or equivalent CRM), able to run queries, understand segmentation, and understand data quality. Can oversee without being dependent on the data person.</div>
-        </div>
-        <div class="non-neg-item dealbreaker">
-          <div class="non-neg-title">⚠ Dealbreaker: purely strategic only</div>
-          <div class="non-neg-body">If they cannot be hands-on. If they see database work as beneath them. If they can only think at the macro level and rely on others to implement everything. That's the pattern that's already failed twice.</div>
-        </div>
-        <div class="non-neg-item">
-          <div class="non-neg-title">Management inexperience — not a dealbreaker</div>
-          <div class="non-neg-body">Sara's view: "We can get them a lot of training, a lot of support." The British Growth Fund management programme is available. More important that they have the right instincts and attitude toward people than a formal track record.</div>
-        </div>
-      </div>
-
-      <div class="info-box amber" style="margin-top:16px;">
-        <div class="info-box-label">The final stage task — redesigned</div>
-        <p>Previous presentations (prepared in advance, polished, brilliant) didn't predict performance. Sara now wants a <strong>live, unprepared task given on the day</strong>. She's done prepared task + roundtable — both passed, both failed in post. The new task should test thinking on their feet and specifically execution-mode thinking. Suggestion discussed: give them the regular givers scenario (£90k, no stewardship, 20% growth target) and ask for a plan — not a strategy doc — with month-by-month milestones and owners. 20 minutes, unprepared.</p>
-      </div>
+  <div class="sidebar-card">
+    <div class="sidebar-card-header">Go Beyond Quick Facts</div>
+    <div class="sidebar-card-body">
+      <div class="sidebar-row"><span class="sidebar-label">Founded</span><span class="sidebar-val">1994</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Total income</span><span class="sidebar-val">~£1.8m (entirely fundraised)</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Breaks 2025</span><span class="sidebar-val">1,103</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Total breaks given</span><span class="sidebar-val">21,000+</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Centres</span><span class="sidebar-val">Cornwall + Derbyshire</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">CEO</span><span class="sidebar-val">Michelle</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Fundraising Dir</span><span class="sidebar-val">Sara</span></div>
+      <div class="sidebar-row"><span class="sidebar-label">Fundraising team</span><span class="sidebar-val">7 people</span></div>
     </div>
+  </div>
+</aside>
 
-    <!-- SECTION 7: THE SELL -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-num">7</div>
-        <div class="section-title">The Sell — Why a Passive Candidate Would Move</div>
-      </div>
-
-      <p class="body">Sara's exact framing: <em>"Think of this as your own company. Think of this income stream as your domain — you could make it amazing."</em> This is the line to lead with to passive candidates.</p>
-
-      <div class="non-neg-grid">
-        <div class="non-neg-item" style="border-top-color: var(--blue);">
-          <div class="non-neg-title">🎬 Cultural visibility</div>
-          <div class="non-neg-body">Louis Theroux, James Acaster (he's obsessed with ice cream), David Gower, Jenny Agutter all backing Ice Cream Moments. A small charity with national-calibre celebrity endorsement.</div>
-        </div>
-        <div class="non-neg-item" style="border-top-color: var(--blue);">
-          <div class="non-neg-title">📈 Genuine growth runway</div>
-          <div class="non-neg-body">Doubling beneficiary numbers is the strategic goal. Pop-up centres in the South East planned. If income grows, the team grows. Trust team trajectory is proof of concept.</div>
-        </div>
-        <div class="non-neg-item" style="border-top-color: var(--blue);">
-          <div class="non-neg-title">🏗 Build something</div>
-          <div class="non-neg-body">The supporter care function essentially doesn't exist yet. No one has done this properly. For the right person, that's an extraordinary opportunity — not a problem. "It wouldn't take much."</div>
-        </div>
-        <div class="non-neg-item" style="border-top-color: var(--blue);">
-          <div class="non-neg-title">⏰ Friday afternoons off</div>
-          <div class="non-neg-body">The whole business shuts down Friday afternoons. 28 days holiday plus bank holidays. Annual pay review benchmarked against sector. Sara described this as a genuine USP: "that's a really good seller."</div>
-        </div>
-        <div class="non-neg-item" style="border-top-color: var(--blue);">
-          <div class="non-neg-title">🤝 Brilliant team culture</div>
-          <div class="non-neg-body">Sara: "The ones that like it, like it because of the team and the team atmosphere." Previous hires who've succeeded describe a genuinely supportive environment with no toxic management or unrealistic targets.</div>
-        </div>
-        <div class="non-neg-item" style="border-top-color: var(--blue);">
-          <div class="non-neg-title">🏡 Remote with real options</div>
-          <div class="non-neg-body">Fully remote. But can work from a coastal cottage at the Cornwall centre for a week. Centres in Cornwall and Derbyshire — not just Zoom.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION 8: PROCESS -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-num">8</div>
-        <div class="section-title">Search Process</div>
-      </div>
-
-      <div class="process-steps">
-        <div class="process-step">
-          <div class="process-step-left"><div class="process-dot"></div><div class="process-line"></div></div>
-          <div class="process-content">
-            <div class="process-week">Now — Week 2</div>
-            <div class="process-title">Market Mapping</div>
-            <div class="process-body">Build talent pool of 150–250 candidates. Target: South West, East Midlands, London. Focus on individual giving managers, direct marketing backgrounds, charity-facing agency alumni. Sara can see the live workflow.</div>
-          </div>
-        </div>
-        <div class="process-step">
-          <div class="process-step-left"><div class="process-dot"></div><div class="process-line"></div></div>
-          <div class="process-content">
-            <div class="process-week">Week 2–4</div>
-            <div class="process-title">Systematic Outreach</div>
-            <div class="process-body">Approach active and passive candidates. Weekly steering call Fridays at 10:30 with Sara. First one starts week of 19 May.</div>
-          </div>
-        </div>
-        <div class="process-step">
-          <div class="process-step-left"><div class="process-dot"></div><div class="process-line"></div></div>
-          <div class="process-content">
-            <div class="process-week">Week 4</div>
-            <div class="process-title">Competency Assessment</div>
-            <div class="process-body">All QIA candidates assessed against agreed functional and behavioural framework. Written report on each. Fast-track any exceptional candidate in a parallel process.</div>
-          </div>
-        </div>
-        <div class="process-step">
-          <div class="process-step-left"><div class="process-dot"></div><div class="process-line"></div></div>
-          <div class="process-content">
-            <div class="process-week">W/C 29 Jun or 3 Jul</div>
-            <div class="process-title">Final Interviews with Sara</div>
-            <div class="process-body">In-person. Location flexible depending on where candidates are based (Cornwall, Derbyshire, London, or Bristol if cluster there). Live unprepared task. 3–5 candidates maximum.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ACTIONS -->
-    <div class="section">
-      <div class="section-header">
-        <div class="section-num">9</div>
-        <div class="section-title">Outstanding Actions</div>
-      </div>
-
-      <div class="info-box amber">
-        <div class="info-box-label">Sara to send to John</div>
-        <div class="action-list" style="margin-top:8px;">
-          <div class="action-item">Names of Izzy and Lena (previous hires) for LinkedIn review</div>
-          <div class="action-item">Average regular giver gift size + count of 2+ year donors</div>
-          <div class="action-item">Objectives set for Lena (to inform candidate brief and competency framework)</div>
-          <div class="action-item">Details of major donor freelance candidate (forwarded to Sara and Michelle for decision)</div>
-        </div>
-      </div>
-
-      <div class="info-box blue">
-        <div class="info-box-label">John to action</div>
-        <div class="action-list" style="margin-top:8px;">
-          <div class="action-item">Send this internal brief and candidate brief to Sara</div>
-          <div class="action-item">Draft competency questions (functional + behavioural) — share with Sara for review</div>
-          <div class="action-item">Send 6-week Friday 10:30 recurring diary invites</div>
-          <div class="action-item">Send major donor FTC candidate CV and salary expectations to Sara</div>
-          <div class="action-item">Launch job ad early next week</div>
-          <div class="action-item">Begin talent pool build — start with London Landmarks runners, Bristol agency alumni, individual giving managers with marcomms background</div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-
-    <div class="sidebar-card">
-      <div class="sidebar-card-header">Role Parameters</div>
-      <div class="sidebar-card-body">
-        <div class="sidebar-row">
-          <span class="sidebar-label">Title</span>
-          <span class="sidebar-val">Supporter Engagement & Fundraising Manager</span>
-        </div>
-        <div class="sidebar-row">
-          <span class="sidebar-label">Salary</span>
-          <span class="sidebar-val">£35,000–£37,000 (some flex for exceptional candidate)</span>
-        </div>
-        <div class="sidebar-row">
-          <span class="sidebar-label">Hours</span>
-          <span class="sidebar-val">Full-time (strong preference). FT preferred given team management.</span>
-        </div>
-        <div class="sidebar-row">
-          <span class="sidebar-label">Location</span>
-          <span class="sidebar-val">Fully remote. South West / East Midlands preferred pools.</span>
-        </div>
-        <div class="sidebar-row">
-          <span class="sidebar-label">Travel</span>
-          <span class="sidebar-val">Periodic — Cornwall + Derbyshire centres</span>
-        </div>
-        <div class="sidebar-row">
-          <span class="sidebar-label">Reports to</span>
-          <span class="sidebar-val">Sara (Director of Fundraising)</span>
-        </div>
-        <div class="sidebar-row">
-          <span class="sidebar-label">Direct reports</span>
-          <span class="sidebar-val">Digital Marketing Officer + Data &amp; Admin / Challenge Events Officer</span>
-        </div>
-        <div class="sidebar-row">
-          <span class="sidebar-label">CRM</span>
-          <span class="sidebar-val">Raiser's Edge + Omatic (automation). Constant Contact (email).</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="sidebar-card">
-      <div class="sidebar-card-header">Benefits</div>
-      <div class="sidebar-card-body">
-        <div class="sidebar-row"><span class="sidebar-label">Holiday</span><span class="sidebar-val">28 days + bank holidays</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">Friday afternoons</span><span class="sidebar-val">Business shuts down — everyone off</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">Pay review</span><span class="sidebar-val">Annual (Jan delivery, benchmarked to sector)</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">Pension</span><span class="sidebar-val">Yes (details TBC)</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">WFH</span><span class="sidebar-val">Fully remote with option to use centres</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">Management training</span><span class="sidebar-val">British Growth Fund 6-week programme available</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">Probation</span><span class="sidebar-val">6 months with formal review</span></div>
-      </div>
-    </div>
-
-    <div class="sidebar-card">
-      <div class="sidebar-card-header">Target Talent Pools</div>
-      <div class="sidebar-card-body">
-        <p style="font-size:13px; color:var(--grey-700); margin-bottom:12px;">Where to look:</p>
-        <span class="tag blue">Individual Giving Managers</span>
-        <span class="tag blue">Direct Marketing Managers</span>
-        <span class="tag blue">Marcomms w/ fundraising</span>
-        <span class="tag navy">DMS / Wood for Trees alumni</span>
-        <span class="tag navy">Salison Group / Edit</span>
-        <span class="tag navy">Charity-facing agencies</span>
-        <span class="tag amber">South West</span>
-        <span class="tag amber">East Midlands</span>
-        <span class="tag amber">London (salary risk)</span>
-        <p style="font-size:13px; color:var(--grey-700); margin-top:12px;"><strong>Check:</strong> London Landmarks half marathon runners for Go Beyond. Any event participants not yet followed up.</p>
-      </div>
-    </div>
-
-    <div class="sidebar-card">
-      <div class="sidebar-card-header">Screening Red Flags</div>
-      <div class="sidebar-card-body">
-        <ul class="nice">
-          <li>Claims to have "run" campaigns they were adjacent to (Izzy's pattern)</li>
-          <li>Great presenter, vague on specifics of what they personally did</li>
-          <li>No curiosity about income targets or financial outcomes</li>
-          <li>Says they'd "rely on the data person" for database queries</li>
-          <li>Purely strategic — no hands-on delivery examples</li>
-          <li>Struggles when asked to walk through month-one specifics</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="sidebar-card">
-      <div class="sidebar-card-header">Go Beyond Quick Facts</div>
-      <div class="sidebar-card-body">
-        <div class="sidebar-row"><span class="sidebar-label">Founded</span><span class="sidebar-val">1994</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">Total income</span><span class="sidebar-val">~£1.8m (entirely fundraised)</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">Breaks 2025</span><span class="sidebar-val">1,103</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">Total breaks given</span><span class="sidebar-val">21,000+</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">Centres</span><span class="sidebar-val">Cornwall + Derbyshire</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">CEO</span><span class="sidebar-val">Michelle</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">Fundraising Dir</span><span class="sidebar-val">Sara</span></div>
-        <div class="sidebar-row"><span class="sidebar-label">Fundraising team</span><span class="sidebar-val">7 people</span></div>
-      </div>
-    </div>
-
-  </aside>
 </div>
 
 <footer>
