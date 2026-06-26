@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supporter Engagement & Fundraising Communications Manager — Candidate Report | Go Beyond</title>
+<style>
+  :root {
+    --dark: #0f2d35;
+    --teal: #1aacb0;
+    --light-teal: #e6f7f7;
+    --amber: #fff3cd;
+    --green: #d4edda;
+    --red: #f8d7da;
+    --white: #ffffff;
+    --light-grey: #f5f7f7;
+    --mid-grey: #e8eeee;
+    --text: #1a2e33;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light-grey); color: var(--text); line-height: 1.6; }
+
+  /* HEADER */
+  .site-header { background: var(--dark); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; }
+  .site-header .brand { color: var(--teal); font-weight: 700; font-size: 1rem; letter-spacing: 0.5px; }
+  .site-header .brand span { color: var(--white); }
+
+  /* NAV */
+  .nav-bar { background: var(--teal); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; overflow-x: auto; }
+  .nav-inner a { color: var(--white); text-decoration: none; padding: 14px 20px; font-size: 0.83rem; font-weight: 600; white-space: nowrap; transition: background 0.2s; }
+  .nav-inner a:hover { background: rgba(0,0,0,0.15); }
+
+  /* HERO */
+  .hero { background: var(--dark); padding: 56px 32px 48px; }
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+  .hero .tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
+  .hero h1 { font-size: 2.2rem; font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 8px; }
+  .hero .org { font-size: 1.1rem; color: #9bc4c4; margin-bottom: 32px; }
+  .stats-row { display: flex; gap: 20px; flex-wrap: wrap; }
+  .stat-box { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px 28px; text-align: center; min-width: 120px; }
+  .stat-box .num { font-size: 2rem; font-weight: 700; color: var(--teal); display: block; }
+  .stat-box .label { font-size: 0.78rem; color: #9bc4c4; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+  /* MAIN */
+  .main { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+  .section { margin-bottom: 56px; }
+  .section-title { font-size: 1.3rem; font-weight: 700; color: var(--dark); border-left: 4px solid var(--teal); padding-left: 16px; margin-bottom: 8px; }
+  .section-sub { font-size: 0.92rem; color: #5a7a80; margin-bottom: 24px; line-height: 1.6; }
+
+  /* CARDS */
+  .card { background: var(--white); border-radius: 10px; padding: 24px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); border: 1px solid #dde8e8; }
+  .card h3 { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+  .card p, .card li { font-size: 0.92rem; color: #3a5a60; line-height: 1.7; }
+  .card ul { padding-left: 18px; margin-top: 8px; }
+  .card li { margin-bottom: 6px; }
+  .card-teal { background: var(--light-teal); border-color: var(--teal); }
+  .card-amber { background: var(--amber); border-color: #e6c84a; }
+
+  /* FRAMEWORK TABLE */
+  .fw-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  .fw-table th { background: var(--dark); color: var(--white); padding: 10px 14px; text-align: left; font-size: 0.85rem; }
+  .fw-table td { padding: 10px 14px; font-size: 0.88rem; border-bottom: 1px solid #eef2f2; color: #3a5a60; vertical-align: top; }
+  .fw-table tr:nth-child(even) td { background: var(--light-grey); }
+  .fw-table td:first-child { font-weight: 600; color: var(--dark); white-space: nowrap; }
+  .fw-table td:nth-child(2) { width: 60px; text-align: center; color: var(--teal); font-weight: 700; }
+
+  /* COMPETENCY QUESTIONS */
+  .q-block { background: var(--white); border-radius: 10px; border: 1px solid #dde8e8; overflow: hidden; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .q-header { background: var(--dark); color: var(--white); padding: 14px 20px; display: flex; gap: 16px; align-items: flex-start; }
+  .q-num { background: var(--teal); color: var(--white); border-radius: 6px; padding: 2px 10px; font-size: 0.78rem; font-weight: 700; white-space: nowrap; margin-top: 2px; }
+  .q-text { font-size: 0.92rem; font-style: italic; color: #e8eeee; line-height: 1.5; }
+  .q-why { padding: 14px 20px; font-size: 0.88rem; color: #3a5a60; line-height: 1.6; }
+  .q-why strong { color: var(--dark); }
+
+  /* CANDIDATE TABS */
+  .tab-bar { display: flex; gap: 0; border-bottom: 2px solid var(--mid-grey); margin-bottom: 24px; overflow-x: auto; }
+  .tab-btn { background: none; border: none; padding: 12px 20px; font-size: 0.88rem; font-weight: 600; color: #7a9a9a; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; font-family: inherit; }
+  .tab-btn.active { color: var(--dark); border-bottom-color: var(--teal); }
+  .tab-btn:hover { color: var(--dark); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* CANDIDATE CARD */
+  .cand-header { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; margin-bottom: 24px; }
+  .cand-name { font-size: 1.4rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .cand-role { font-size: 0.9rem; color: #5a7a80; margin-bottom: 12px; line-height: 1.5; }
+  .score-badge { background: var(--dark); color: var(--white); border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 100px; }
+  .score-badge .score-num { font-size: 2rem; font-weight: 700; color: var(--teal); display: block; }
+  .score-badge .score-label { font-size: 0.72rem; color: #9bc4c4; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* SCORE TABLE */
+  .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media(max-width:640px){ .score-grid { grid-template-columns: 1fr; } }
+  .score-table { width: 100%; border-collapse: collapse; }
+  .score-table th { background: var(--dark); color: var(--white); padding: 8px 12px; font-size: 0.82rem; text-align: left; }
+  .score-table td { padding: 8px 12px; font-size: 0.85rem; border-bottom: 1px solid #eef2f2; }
+  .score-table td:nth-child(2) { text-align: center; color: var(--teal); font-weight: 700; }
+  .score-table td:nth-child(3) { text-align: center; font-weight: 700; }
+  .score-table .total-row td { background: var(--dark); color: var(--white); font-weight: 700; }
+  .score-table .total-row td:nth-child(3) { color: var(--teal); }
+
+  /* RAG */
+  .rag-green { color: #155724; }
+  .rag-amber { color: #856404; }
+  .rag-red { color: #721c24; }
+  .bg-green { background: var(--green); }
+  .bg-amber { background: var(--amber); }
+  .bg-red { background: var(--red); }
+
+  /* ASSESSMENT */
+  .assessment-body { font-size: 0.92rem; color: #3a5a60; line-height: 1.75; margin-bottom: 24px; }
+  .assessment-body p { margin-bottom: 12px; }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width:640px){ .two-col { grid-template-columns: 1fr; } }
+
+  /* FLAG LIST */
+  .flag-list { list-style: none; padding: 0; }
+  .flag-list li { padding: 8px 0; border-bottom: 1px solid #eef2f2; font-size: 0.88rem; color: #3a5a60; line-height: 1.5; display: flex; gap: 8px; }
+  .flag-list li:last-child { border-bottom: none; }
+  .flag-list li::before { flex-shrink: 0; margin-top: 1px; }
+  .flag-green li::before { content: '🟢'; }
+  .flag-amber li::before { content: '🟡'; }
+  .flag-red li::before { content: '🔴'; }
+
+  /* SUMMARY TABLE */
+  .summary-table { width: 100%; border-collapse: collapse; }
+  .summary-table th { background: var(--dark); color: var(--white); padding: 10px 14px; text-align: left; font-size: 0.85rem; }
+  .summary-table td { padding: 10px 14px; font-size: 0.88rem; border-bottom: 1px solid #eef2f2; }
+  .summary-table tr:nth-child(even) td { background: var(--light-grey); }
+
+  /* EXPLORATION */
+  .explore-block { background: var(--white); border-radius: 10px; border: 1px solid #dde8e8; overflow: hidden; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .explore-header { background: var(--light-teal); padding: 12px 20px; font-weight: 700; font-size: 0.92rem; color: var(--dark); }
+  .explore-body { padding: 16px 20px; font-size: 0.88rem; color: #3a5a60; line-height: 1.6; }
+
+  .divider { border: none; border-top: 2px solid var(--mid-grey); margin: 40px 0; }
+  footer { background: var(--dark); color: #9bc4c4; text-align: center; padding: 24px; font-size: 0.8rem; }
+  footer strong { color: var(--teal); }
+
+  .note-box { background: var(--amber); border: 1px solid #e6c84a; border-radius: 10px; padding: 16px 20px; font-size: 0.88rem; color: #5a4500; line-height: 1.6; margin-bottom: 20px; }
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="brand">RAISE + RECRUIT <span>· Built for charities, not for profit</span></div>
+</div>
+
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a href="#overview">Overview</a>
+    <a href="#framework">Assessment Framework</a>
+    <a href="#questions">Competency Questions</a>
+    <a href="#candidates">Candidates</a>
+    <a href="#exploration">Interview Guidance</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="tag">Candidate Report</div>
+    <h1>Supporter Engagement & Fundraising Communications Manager</h1>
+    <div class="org">Go Beyond · July 2026</div>
+    <div class="stats-row">
+      <div class="stat-box"><span class="num">317</span><span class="label">Candidates identified</span></div>
+      <div class="stat-box"><span class="num">35</span><span class="label">Discovery calls</span></div>
+      <div class="stat-box"><span class="num">20</span><span class="label">First interviews</span></div>
+      <div class="stat-box"><span class="num">10</span><span class="label">Competency interviews</span></div>
+      <div class="stat-box"><span class="num">3</span><span class="label">Shortlisted for interview</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <div class="section-title">Search Overview</div>
+    <div class="section-sub">How the search was conducted and what we were looking for.</div>
+
+    <div class="card card-teal" style="margin-bottom:16px;">
+      <h3>Search timeline</h3>
+      <p>Search opened: <strong>May 2026</strong> · Client interviews: <strong>1–2 July 2026, Daleside — Ravenscliffe Farm, Fenny Bentley, Ashbourne, DE6 1LF</strong></p>
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <h3>Interview schedule</h3>
+      <table class="fw-table" style="margin-top:8px;">
+        <tr><th>Candidate</th><th>Date</th><th>Time</th></tr>
+        <tr><td>Kirstie Hayward</td><td>Wednesday 1 July 2026</td><td>3.30pm</td></tr>
+        <tr><td>Jasmine Manders</td><td>Thursday 2 July 2026</td><td>9.00am</td></tr>
+        <tr><td>Eva Gregory</td><td>Thursday 2 July 2026</td><td>11.00am</td></tr>
+        <tr><td>Cathy Adcock</td><td>Thursday 2 July 2026</td><td>2.00pm</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>How the search was conducted</h3>
+      <p>A talent pool of 317 candidates was identified through proactive headhunting, sector network mapping, and targeted search across the charity fundraising community. This included direct outreach to individual giving specialists, supporter engagement and communications managers, regular giving programme managers, and multi-discipline fundraisers working across the sector nationally.</p>
+      <p style="margin-top:10px;">Over 35 discovery conversations were held with candidates identified through the search to assess initial suitability, motivation, and fit against the brief. From those, 20 candidates were invited to first interview and 10 progressed to competency interview.</p>
+      <p style="margin-top:10px;">Three candidates are recommended for your consideration and are presented in this report. A fourth candidate — an internal Go Beyond applicant — has also been advanced to the client interview stage as part of a fair and consistent process, with a full assessment included below.</p>
+    </div>
+
+    <div class="card card-amber">
+      <h3>Note on the shortlist</h3>
+      <p>Four candidates were originally identified for the client interview stage. One candidate was subsequently unable to attend on the agreed dates. Three external candidates are formally recommended. The internal candidate (Jasmine Manders) is included in the process as a matter of fair practice. A separate assessment note accompanies her profile below.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- FRAMEWORK -->
+  <section class="section" id="framework">
+    <div class="section-title">Assessment Framework & Important Notes</div>
+    <div class="section-sub">Please read before reviewing candidate scores.</div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <h3>Please read before reviewing scores</h3>
+      <p>The assessments, scores and commentary in this report represent one recruiter's interpretation of each candidate's performance across CV review, first interview and structured competency interview. They are not a definitive assessment of any candidate's capability or potential.</p>
+      <p style="margin-top:10px;">Scores are based on specific evidence gathered through the recruitment process — including written application, responses to set interview questions, and structured competency interview responses. Candidates may perform differently in a face-to-face setting, under different conditions, or when responding to questions framed in a way that suits their natural communication style.</p>
+      <p style="margin-top:10px;">This report is intended as a guide to inform your own assessment at interview — not as a final verdict. The scores and commentary should prompt lines of enquiry, not close them down. The final assessment and hiring decision rests entirely with you.</p>
+    </div>
+
+    <div class="card">
+      <h3>How scores are calculated</h3>
+      <p>Each candidate is assessed across six dimensions, each carrying a different weighting based on the priorities of this brief. A score out of 10 is given for each dimension, multiplied by the weighting to produce a weighted score. Total scores are out of 100.</p>
+      <p style="margin-top:10px;">Scores draw on four sources of evidence: CV and written application, cover letter (where submitted), first interview, and structured competency interview. Interview evidence carries the heaviest weight. STAR format delivery is not scored — substance and capability are. Nerves are taken into account throughout.</p>
+      <table class="fw-table" style="margin-top:16px;">
+        <tr><th>Dimension</th><th>Weight</th><th>What it measures</th></tr>
+        <tr><td>Campaign ownership & execution</td><td>22%</td><td>Evidence of end-to-end campaign management — from brief to delivery to results. In-house execution capability without reliance on agency or external support.</td></tr>
+        <tr><td>Fundraiser identity & income accountability</td><td>22%</td><td>Whether the candidate genuinely owns an income number. Income-first thinking. Personal accountability for fundraising targets rather than contributing to someone else's number.</td></tr>
+        <tr><td>Data literacy & CRM</td><td>17%</td><td>Hands-on database use for segmentation, analysis, and strategic decision-making. Not passive CRM use — active and daily engagement with data as a fundraising tool.</td></tr>
+        <tr><td>Supporter journey thinking</td><td>17%</td><td>Ability to design and deliver stewardship journeys for individual donors, regular givers, legacy pledgers, and challenge event participants. Retention thinking as well as acquisition.</td></tr>
+        <tr><td>Financial instinct & target logic</td><td>11%</td><td>Ability to construct a business case for fundraising spend. Understanding of cost per acquisition, lifetime value, payback period, and ROI. Backwards-planning from an income target.</td></tr>
+        <tr><td>Management thinking</td><td>11%</td><td>Evidence of managing and developing direct reports. Handling of underperformance. Building a team culture. Formal performance management experience.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- COMPETENCY QUESTIONS -->
+  <section class="section" id="questions">
+    <div class="section-title">Competency Interview Questions & Rationale</div>
+    <div class="section-sub">The same eight questions were asked of all candidates in the same order. Questions were designed to test the specific capabilities identified as critical to success in this role.</div>
+
+    <div class="q-block">
+      <div class="q-header"><span class="q-num">B1 — Behavioural</span><span class="q-text">"Tell me about a time you owned a fundraising or marketing campaign end-to-end — from strategy through to results — where something went wrong mid-campaign. What did you do, and what was the outcome?"</span></div>
+      <div class="q-why"><strong>Why we asked it:</strong> Go Beyond's campaigns — Ice Cream Moments, appeals, challenge events — run with small teams and limited resource. Things go wrong. This question tests whether candidates have genuinely owned a campaign from start to finish and can manage in real time when circumstances change. The crisis element is deliberate — it reveals decision-making under pressure and the difference between people who manage campaigns and people who execute within them.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-header"><span class="q-num">B2 — Behavioural</span><span class="q-text">"Describe a time you built or grew an income stream — or a supporter base — from very little. What did you prioritise first, and what did you actually deliver?"</span></div>
+      <div class="q-why"><strong>Why we asked it:</strong> Go Beyond's regular giving programme, legacy pipeline, and alumni engagement are all at early stages. The person in this role will be building, not maintaining. This question tests builder instinct — whether candidates have genuinely created something from nothing or have managed what already existed.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-header"><span class="q-num">B3 — Behavioural</span><span class="q-text">"Give me an example of a time you had to get up to speed in a fundraising or marketing discipline that wasn't your strongest. What did you do to develop, and what did you deliver as a result?"</span></div>
+      <div class="q-why"><strong>Why we asked it:</strong> The role spans individual giving, regular giving, legacy, challenge events, database management, and line management. No candidate will arrive with equal depth across all. This question tests learning agility — whether candidates can pick up a new discipline under real pressure and deliver a concrete outcome.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-header"><span class="q-num">B4 — Behavioural</span><span class="q-text">"Tell me about the most challenging people management situation you've faced. What was the situation, how did you handle it, and what would you do differently with hindsight?"</span></div>
+      <div class="q-why"><strong>Why we asked it:</strong> This role has two direct reports who need clear direction and development. Previous post-holders have not managed this effectively. This question tests whether candidates have genuinely managed difficult people situations — not just mentored willing colleagues — and whether they have a professional and considered approach to doing so.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-header"><span class="q-num">F1 — Functional</span><span class="q-text">"Go Beyond uses Raiser's Edge. If Sara asked you on day one to pull a segment of regular givers who have donated consistently for three or more years but haven't given in the last six months — walk me through exactly how you'd approach that, and what you'd do with the data once you had it."</span></div>
+      <div class="q-why"><strong>Why we asked it:</strong> Long-standing regular givers who have recently lapsed represent one of the highest-value reactivation opportunities in the database. This question tests both data literacy (can candidates describe the correct query logic in Raiser's Edge?) and strategic thinking (do they know what to do with the segment once they have it?). Candidates who can describe the methodology AND the reactivation approach demonstrate genuine CRM capability.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-header"><span class="q-num">F2 — Functional</span><span class="q-text">"Go Beyond has around 200–300 regular givers generating £90k a year. There is no acquisition programme and no ring-fenced budget — every spend needs a business case to Sara. What would your first regular giving acquisition proposal look like, what would you spend, and how would you justify the ROI?"</span></div>
+      <div class="q-why"><strong>Why we asked it:</strong> Every spend in this role needs a business case. This question tests financial instinct — whether candidates can construct a structured acquisition proposal with channel rationale, cost logic, audience segmentation, projected conversion, and ROI framing. Candidates who answer in activity terms rather than income terms flag a significant concern.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-header"><span class="q-num">F3 — Functional</span><span class="q-text">"Ice Cream Moments needs to generate £20,000 this year at £3.50 per virtual ice cream, with celebrity endorsement from Louis Theroux, James Acaster and Jenny Agutter. Walk me through how you'd plan to hit that target — channels, audience, and what you'd do mid-campaign if it looked like you were falling short."</span></div>
+      <div class="q-why"><strong>Why we asked it:</strong> ICM is Go Beyond's flagship summer campaign and one of the first things the new person will need to either continue or build on. This question tests creative campaign thinking, channel planning, celebrity asset activation, and mid-campaign decision-making. It also tests whether candidates have actually researched Go Beyond before interview — ICM is prominent on the website and in the charity's communications.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-header"><span class="q-num">F4 — Functional</span><span class="q-text">"Go Beyond's regular givers currently receive nothing beyond appeal letters. You have one month and no external resource — no agency, no designer, no freelancer. Design me a basic stewardship journey for those donors. Walk me through every step, every touchpoint, and who sends what, when."</span></div>
+      <div class="q-why"><strong>Why we asked it:</strong> The regular giving stewardship gap is the highest-priority income opportunity in the role. This question tests whether candidates understand that stewardship is a journey, not a transaction — and whether they can design one specifically for Go Beyond's supporter base. The no-external-resource constraint is deliberate: it tests in-house execution capability and creative thinking within real constraints.</div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CANDIDATES -->
+  <section class="section" id="candidates">
+    <div class="section-title">Recommended Candidates</div>
+    <div class="section-sub">Three candidates are formally recommended for your consideration, presented in score order. A fourth candidate — an internal applicant — is included below with a separate assessment note. Click each tab to view the full assessment.</div>
+
+    <table class="summary-table" style="margin-bottom:32px;">
+      <tr><th>#</th><th>Candidate</th><th>Score</th><th>Current role</th><th>Interview</th><th>Status</th></tr>
+      <tr><td>1</td><td><strong>Cathy Adcock MInstF</strong></td><td><strong>80.2</strong></td><td>Fundraising Project Manager (Interim), Royal Osteoporosis Society</td><td>Thu 2 July · 2.00pm</td><td>✅ Recommended</td></tr>
+      <tr><td>2</td><td><strong>Kirstie Hayward MInstF</strong></td><td><strong>75.7</strong></td><td>Fundraising & Communications Manager, KEEN London</td><td>Wed 1 July · 3.30pm</td><td>✅ Recommended</td></tr>
+      <tr><td>3</td><td><strong>Eva Gregory</strong></td><td><strong>67.4</strong></td><td>Marketing & Fundraising Manager, SarcoidosisUK</td><td>Thu 2 July · 11.00am</td><td>✅ Recommended</td></tr>
+      <tr><td>4</td><td><strong>Jasmine Manders</strong></td><td><strong>49.5*</strong></td><td>Senior Trusts Fundraiser, Go Beyond</td><td>Thu 2 July · 9.00am</td><td>⚠️ Internal candidate — see note</td></tr>
+    </table>
+
+    <!-- TAB BAR -->
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="showTab('cathy')">Cathy Adcock</button>
+      <button class="tab-btn" onclick="showTab('kirstie')">Kirstie Hayward</button>
+      <button class="tab-btn" onclick="showTab('eva')">Eva Gregory</button>
+      <button class="tab-btn" onclick="showTab('jasmine')">Jasmine Manders</button>
+    </div>
+
+    <!-- CATHY -->
+    <div id="tab-cathy" class="tab-panel active">
+      <div class="cand-header">
+        <div>
+          <div class="cand-name">Cathy Adcock MInstF</div>
+          <div class="cand-role">Fundraising Project Manager (Interim) · Royal Osteoporosis Society · Aug 2025–Dec 2026<br>Previously Fundraising & Marketing Manager · Julian House · 21 years<br>Based: Malmesbury, Wiltshire</div>
+        </div>
+        <div class="score-badge"><span class="score-num">80.2</span><span class="score-label">Overall score</span></div>
+      </div>
+
+      <div class="score-grid">
+        <table class="score-table">
+          <tr><th>Dimension</th><th>Wt</th><th>Score</th><th>Weighted</th></tr>
+          <tr><td>Campaign ownership & execution</td><td>22%</td><td class="rag-green">8.25</td><td>18.2</td></tr>
+          <tr><td>Fundraiser identity & income accountability</td><td>22%</td><td class="rag-green">8.5</td><td>18.7</td></tr>
+          <tr><td>Data literacy & CRM</td><td>17%</td><td class="rag-green">7.25</td><td>12.3</td></tr>
+          <tr><td class="total-row" colspan="4"></td></tr>
+        </table>
+        <table class="score-table">
+          <tr><th>Dimension</th><th>Wt</th><th>Score</th><th>Weighted</th></tr>
+          <tr><td>Supporter journey thinking</td><td>17%</td><td class="rag-green">8.0</td><td>13.6</td></tr>
+          <tr><td>Financial instinct & target logic</td><td>11%</td><td class="rag-green">7.75</td><td>8.5</td></tr>
+          <tr><td>Management thinking</td><td>11%</td><td class="rag-green">7.75</td><td>8.9</td></tr>
+          <tr class="total-row"><td>TOTAL</td><td></td><td></td><td>80.2</td></tr>
+        </table>
+      </div>
+
+      <div class="assessment-body">
+        <p>Cathy is the strongest candidate in this process. Twenty-seven years of individual giving, direct marketing, legacy, and stewardship — this is her entire career, not a transition into fundraising from another discipline. Her income-first instinct is the clearest of any candidate assessed: before a single interview question was asked, she opened with an unprompted question about Go Beyond's income architecture. That is the instinct Sara has described as essential and that previous failed hires have not demonstrated.</p>
+        <p>Her most significant campaign example — the Julian House Christmas Appeal 2022 — is the best crisis management answer in this process. The creative agency delivered final artwork on 1 December. Cathy decoupled the integrated campaign, ran the digital and direct mail channels independently with different messaging and creative, and delivered the most successful Christmas appeal Julian House had run — over £200,000 with exceptional ROI. Done entirely in-house, under maximum time pressure. This is the level of hands-on execution Go Beyond needs.</p>
+        <p>Her management of an underperforming direct report at Julian House is the most complete management answer in the pool: she observed, documented, had direct conversations, put a formal three-month improvement plan in place with weekly milestones, moved to formal capability proceedings when milestones were not met, and the person resigned. Her hindsight reflection — she would have acted on early flags sooner — shows professional self-awareness. She has also built and led a team of six at Julian House over multiple years.</p>
+        <p>Her three-tier legacy journey design (unaware, intender, confirmed pledger) and her understanding of regular giver stewardship (segmented by giving behaviour, anniversary touchpoints, cumulative giving totals) are both immediately applicable to Go Beyond's current situation. Go Beyond's legacy programme is built and ready to launch; Cathy has run one before.</p>
+        <p>Two practical notes: Cathy has not used Raiser's Edge and will need structured onboarding in her first two weeks. She is candid about this and will learn it quickly given her data track record. She has also held two consecutive interim roles following redundancy after 21 years at Julian House. Her explanation is credible and her tenure track record speaks for itself — but Sara should confirm directly at interview that this is the role she wants to commit to, and what that commitment looks like.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="card bg-green">
+          <h3>Key strengths</h3>
+          <ul class="flag-list flag-green">
+            <li>Highest fundraiser identity score in the pool — income-first instinct without prompting</li>
+            <li>Best campaign crisis answer in the pool — Christmas Appeal 2022, £200k+, in-house pivot under pressure</li>
+            <li>Best management answer in the pool — formal underperformance process completed correctly</li>
+            <li>27 years individual giving, direct marketing, legacy, and stewardship — the role's entire brief</li>
+            <li>Three-tier legacy journey design ready to apply immediately</li>
+            <li>£1m+ income budget held and exceeded three consecutive years at ROS</li>
+          </ul>
+        </div>
+        <div class="card bg-amber">
+          <h3>Points to explore at interview</h3>
+          <ul class="flag-list flag-amber">
+            <li>Raiser's Edge: no prior experience — confirm her plan for onboarding in the first two weeks</li>
+            <li>Longevity: two interim roles following 21-year tenure — confirm long-term commitment to this role specifically</li>
+            <li>Ideas to plans: Sara's core concern with previous hires — probe that every idea comes with an immediate execution follow-through</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- KIRSTIE -->
+    <div id="tab-kirstie" class="tab-panel">
+      <div class="cand-header">
+        <div>
+          <div class="cand-name">Kirstie Hayward MInstF</div>
+          <div class="cand-role">Fundraising & Communications Manager (0.8 FTE) · KEEN London · 8 years<br>Previously Individual Giving Fundraiser · Rainforest Foundation UK<br>Based: Potters Bar, Hertfordshire</div>
+        </div>
+        <div class="score-badge"><span class="score-num">75.7</span><span class="score-label">Overall score</span></div>
+      </div>
+
+      <div class="score-grid">
+        <table class="score-table">
+          <tr><th>Dimension</th><th>Wt</th><th>Score</th><th>Weighted</th></tr>
+          <tr><td>Campaign ownership & execution</td><td>22%</td><td class="rag-green">7.75</td><td>17.1</td></tr>
+          <tr><td>Fundraiser identity & income accountability</td><td>22%</td><td class="rag-green">8.0</td><td>17.6</td></tr>
+          <tr><td>Data literacy & CRM</td><td>17%</td><td class="rag-green">7.5</td><td>12.75</td></tr>
+        </table>
+        <table class="score-table">
+          <tr><th>Dimension</th><th>Wt</th><th>Score</th><th>Weighted</th></tr>
+          <tr><td>Supporter journey thinking</td><td>17%</td><td class="rag-green">7.75</td><td>13.2</td></tr>
+          <tr><td>Financial instinct & target logic</td><td>11%</td><td class="rag-amber">7.25</td><td>8.0</td></tr>
+          <tr><td>Management thinking</td><td>11%</td><td class="rag-amber">6.25</td><td>6.9</td></tr>
+          <tr class="total-row"><td>TOTAL</td><td></td><td></td><td>75.7</td></tr>
+        </table>
+      </div>
+
+      <div class="assessment-body">
+        <p>Kirstie has spent eight years as the sole fundraiser at KEEN London, a charity supporting children and young people with additional needs and disabilities. That context — sole fundraiser, no agency, no team, no budget for external support, building programmes from nothing — is the closest operational parallel to Go Beyond's environment of any candidate in this process. She does not need to imagine working this way; it has been her daily reality for nearly a decade.</p>
+        <p>Her lapsed regular giver reactivation answer was the strongest functional answer in the entire competency pool: automated cancellation email at point of lapse, monthly sweep to identify lapsed givers, cumulative giving calculation to show what they had contributed, advocacy and volunteering micro-asks, appeal with adapted messaging, and a hold-and-watch decision for those who do not respond. Sub-segmented within the lapsed group by recency, value, and engagement. This is genuine fundraising sophistication.</p>
+        <p>Her income accountability is sole and direct — at KEEN, if the money does not come in, the sessions do not run. "What they need, I provide. There's no one else." Her Big Give campaign grew from a £2,000 target in year one to £20,000 by year six through consistent iteration, audience testing, and messaging development. Her individual appeal income grew from £2,000 to over £10,000. And she delivered KEEN's first ever legacy — a £50,000 bequest — through six years of patient, consistent legacy messaging, stewardship, and trustee education.</p>
+        <p>Her ICM insight in the competency interview — using the campaign as a regular giving conversion entry point, with a small targeted ask converting one-off ICM donors to monthly givers — was the most immediately applicable campaign idea in the pool for Go Beyond's current situation.</p>
+        <p>Two areas to explore at interview: Kirstie is based in Hertfordshire, and Go Beyond's centres are in Cornwall and Derbyshire. The role is remote, but Sara expects genuine connection to the work and regular visits to centres. Kirstie should come with a specific plan for how she would build that connection. Her most recent direct mail ownership is from her Rainforest Foundation years (pre-2015); recent KEEN work has been digital-first. Worth asking how she would approach rebuilding a direct mail capability.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="card bg-green">
+          <h3>Key strengths</h3>
+          <ul class="flag-list flag-green">
+            <li>Eight years as sole fundraiser for a children's charity — the closest operational parallel to Go Beyond's model</li>
+            <li>Best lapsed RG reactivation answer in the pool — sophisticated sub-segmentation and staged approach</li>
+            <li>KEEN's first ever legacy (£50,000) through six years of patient strategy</li>
+            <li>Big Give from £2,000 to £20,000 — evidenced iterative income growth</li>
+            <li>ICM regular giving conversion idea — the most specific and immediately actionable campaign insight in the process</li>
+            <li>Genuine data enthusiasm — "I'd love to play with Raiser's Edge one day"</li>
+          </ul>
+        </div>
+        <div class="card bg-amber">
+          <h3>Points to explore at interview</h3>
+          <ul class="flag-list flag-amber">
+            <li>Geography: Hertfordshire base — ask for a specific plan for centre visits and community engagement</li>
+            <li>Direct mail: most recent DM ownership pre-2015 — probe how she would rebuild this capability</li>
+            <li>Management: KEEN management has been primarily of volunteers — probe readiness for formal paid line management from day one</li>
+            <li>No cover letter submitted — ask about her specific motivation for this role and Go Beyond</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVA -->
+    <div id="tab-eva" class="tab-panel">
+      <div class="cand-header">
+        <div>
+          <div class="cand-name">Eva Gregory</div>
+          <div class="cand-role">Marketing & Fundraising Manager · SarcoidosisUK · June 2023–present (previously Junior Executive, Dec 2022)<br>Based: Hertfordshire / London area</div>
+        </div>
+        <div class="score-badge"><span class="score-num">67.4</span><span class="score-label">Overall score</span></div>
+      </div>
+
+      <div class="score-grid">
+        <table class="score-table">
+          <tr><th>Dimension</th><th>Wt</th><th>Score</th><th>Weighted</th></tr>
+          <tr><td>Campaign ownership & execution</td><td>22%</td><td class="rag-amber">7.0</td><td>15.4</td></tr>
+          <tr><td>Fundraiser identity & income accountability</td><td>22%</td><td class="rag-green">7.5</td><td>16.5</td></tr>
+          <tr><td>Data literacy & CRM</td><td>17%</td><td class="rag-amber">6.75</td><td>11.5</td></tr>
+        </table>
+        <table class="score-table">
+          <tr><th>Dimension</th><th>Wt</th><th>Score</th><th>Weighted</th></tr>
+          <tr><td>Supporter journey thinking</td><td>17%</td><td class="rag-amber">6.75</td><td>11.5</td></tr>
+          <tr><td>Financial instinct & target logic</td><td>11%</td><td class="rag-amber">6.5</td><td>7.2</td></tr>
+          <tr><td>Management thinking</td><td>11%</td><td class="rag-amber">5.25</td><td>5.8</td></tr>
+          <tr class="total-row"><td>TOTAL</td><td></td><td></td><td>67.4</td></tr>
+        </table>
+      </div>
+
+      <div class="assessment-body">
+        <p>Eva is the youngest and least experienced candidate in the pool, but her income accountability is more clearly evidenced than candidates with ten times her experience. She said without prompting in her first interview: "income is definitely on me." Her £190–225k income target at SarcoidosisUK is broken down by stream, tracked monthly, and personally held. That instinct — income-first, not activity-first — is the quality Sara has described as most critical and that previous failed hires have not demonstrated.</p>
+        <p>Her competency B1 answer — the charity raffle — was the strongest single campaign ownership example in the entire pool across all candidates assessed. She identified the opportunity herself, applied for and obtained the council licence (£40 and bureaucratic delays), sourced 14 prizes through corporate relationships and donor contacts (including a signed Arsenal ball and Fortnum & Mason hamper), built the shop product, wrote all communications, launched across email and social, and then diagnosed and fixed a spam folder crisis in real time — testing from multiple email addresses, adding an on-page prompt, fielding anxious queries calmly. Over 1,000 tickets sold. Full end-to-end campaign ownership with a real crisis managed in real time.</p>
+        <p>Her B2 answer — the support services to donations pipeline — shows test-and-learn income development at zero cost: she identified that helpline and support group users had never been asked to donate, got consent, co-designed three message variants with the Support Services Officer, compared conversion data, and iterated to a combined approach. Conversion moved from under 5% to approaching 50%. Income from a previously untapped source, at no cost, through data comparison and iteration.</p>
+        <p>The honest framing for your consideration: Eva is the highest potential, lowest experience candidate in the process. She sits third in the pool by score. The gap from Cathy and Kirstie reflects experience and scale, not fundamental capability gaps. She is 3.5 years into a fundraising career and has already demonstrated income accountability, in-house campaign execution, and data-led thinking that more experienced candidates often cannot match. Sara should decide whether she wants proven seniority or the highest potential candidate — both are legitimate choices.</p>
+        <p>Eva has not been a formal line manager of a paid direct report. Her management example — navigating a conflict between two colleagues in a mediation role — is credible and self-aware, but direct performance management is new territory. This should be discussed openly at interview, along with the expectation of support in the first six months.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="card bg-green">
+          <h3>Key strengths</h3>
+          <ul class="flag-list flag-green">
+            <li>Clearest income accountability statement in the pool — "income is definitely on me" without prompting</li>
+            <li>Best campaign ownership answer in the pool — raffle from concept through crisis to 1,000+ tickets</li>
+            <li>Support services pipeline — test-and-learn income development from untapped source at zero cost</li>
+            <li>Small charity in-house execution is her normal — no-resource environment is already familiar</li>
+            <li>Natural warmth and relational instinct that builds lasting donor relationships</li>
+            <li>Highest potential ceiling of the three recommended candidates</li>
+          </ul>
+        </div>
+        <div class="card bg-amber">
+          <h3>Points to explore at interview</h3>
+          <ul class="flag-list flag-amber">
+            <li>Management: no formal line management experience — discuss the step-up openly and what support she would need</li>
+            <li>Scale: SarcoidosisUK is smaller than Go Beyond's operation — probe readiness for the step up</li>
+            <li>Raiser's Edge: no experience — confirm her onboarding plan</li>
+            <li>Location and salary: confirm both before any offer is made</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- JASMINE -->
+    <div id="tab-jasmine" class="tab-panel">
+      <div class="note-box">
+        <strong>⚠️ Internal candidate — please read this note before reviewing the assessment.</strong><br><br>
+        Jasmine Manders is currently Senior Trusts Fundraiser at Go Beyond and has been advanced to the client interview stage as part of a fair and consistent process. She has received exactly the same assessment, interview questions, and preparation support as every external candidate. The score below reflects her performance against the same framework applied to all candidates. The assessment commentary is honest about both her strengths and the gaps identified through the process.
+      </div>
+
+      <div class="cand-header">
+        <div>
+          <div class="cand-name">Jasmine Manders</div>
+          <div class="cand-role">Senior Trusts Fundraiser · Go Beyond · October 2023–present (promoted twice)<br>Previously SEND Teaching Assistant, Farway CofE Primary School<br>Based: Go Beyond (location not confirmed)</div>
+        </div>
+        <div class="score-badge"><span class="score-num">49.5*</span><span class="score-label">First interview only</span></div>
+      </div>
+
+      <div class="score-grid">
+        <table class="score-table">
+          <tr><th>Dimension</th><th>Wt</th><th>Score</th><th>Weighted</th></tr>
+          <tr><td>Campaign ownership & execution</td><td>22%</td><td class="rag-amber">5.0</td><td>11.0</td></tr>
+          <tr><td>Fundraiser identity & income accountability</td><td>22%</td><td class="rag-red">4.5</td><td>9.9</td></tr>
+          <tr><td>Data literacy & CRM</td><td>17%</td><td class="rag-amber">5.5</td><td>9.35</td></tr>
+        </table>
+        <table class="score-table">
+          <tr><th>Dimension</th><th>Wt</th><th>Score</th><th>Weighted</th></tr>
+          <tr><td>Supporter journey thinking</td><td>17%</td><td class="rag-amber">5.5</td><td>9.35</td></tr>
+          <tr><td>Financial instinct & target logic</td><td>11%</td><td class="rag-red">4.0</td><td>4.4</td></tr>
+          <tr><td>Management thinking</td><td>11%</td><td class="rag-amber">5.0</td><td>5.5</td></tr>
+          <tr class="total-row"><td>TOTAL*</td><td></td><td></td><td>49.5</td></tr>
+        </table>
+      </div>
+      <p style="font-size:0.82rem;color:#7a9a9a;margin-bottom:20px;">*First interview score only. Competency interview score pending.</p>
+
+      <div class="assessment-body">
+        <p>Jasmine brings something no external candidate can offer: she already knows Go Beyond from the inside. She knows the charity's culture, the team, the database, the campaigns, and the beneficiary community from direct daily experience. She has volunteered on residential breaks, written the 2024 Christmas appeal and the 2026 ICM appeal letter, managed social media and paid ads, and has been nominated for Newcomer of the Year. She was promoted twice in under three years and secured £200,000 in grants against a £170,000 target in 2025.</p>
+        <p>The honest assessment, applying the same framework used for all candidates, is that the two most critical dimensions for this role — fundraiser identity and financial instinct — both score in the red. Jasmine confirmed directly that she has no individual giving income experience. Her regular giver acquisition answer described a multi-channel coordinated approach without any cost, conversion, ROI, or business case framing — the activity-first rather than income-first thinking that Sara has identified as the failure mode in previous appointments.</p>
+        <p>Her Raiser's Edge use has been in a grants monitoring context rather than individual giving analytics. Her management experience is mentoring in a peer-adjacent context rather than formal performance management of a paid direct report. Her current trusts target for the Essex project (£100,000) has generated approximately £18-19,000 at the time of interview — a challenging position she addressed openly and with a credible explanation.</p>
+        <p>Jasmine is clearly talented, ambitious, and deeply committed to Go Beyond. The question for Sara is not whether Jasmine is capable — she clearly is — but whether this specific role, at this specific moment, is the right context for her to develop. The individual giving discipline, the financial target logic, and the formal management accountability that this role requires from day one are disciplines she has not yet had the opportunity to develop. With the right experience, she could be a strong candidate for a role like this in 18-24 months.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="card bg-green">
+          <h3>Key strengths</h3>
+          <ul class="flag-list flag-green">
+            <li>Irreplaceable Go Beyond knowledge — no external candidate can match her understanding of the charity, team, and culture</li>
+            <li>Promoted twice in under three years — genuine performance and growth trajectory</li>
+            <li>£200,000 in grants secured in 2025 against a £170,000 target</li>
+            <li>Raiser's Edge experience in a grants context — day-one system familiarity</li>
+            <li>Written ICM and Christmas appeal copy — genuine communications capability in Go Beyond's voice</li>
+            <li>Psychology MSc (Distinction) — analytical ability and understanding of human motivation</li>
+          </ul>
+        </div>
+        <div class="card bg-red">
+          <h3>Points to explore at interview</h3>
+          <ul class="flag-list flag-red">
+            <li>Individual giving income experience: confirmed absent — how does she propose to bridge this gap from day one?</li>
+            <li>Financial instinct: acquisition proposal lacked ROI framing — probe whether income-first thinking can be evidenced</li>
+            <li>Formal line management: mentoring experience only — how would she approach managing a direct report's performance and development?</li>
+            <li>Current target delivery: £18-19k against £100k for the Essex project — explore the context and the recovery strategy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- INTERVIEW GUIDANCE -->
+  <section class="section" id="exploration">
+    <div class="section-title">Interview Guidance</div>
+    <div class="section-sub">Suggested lines of enquiry for the client interview. These are prompts, not scripts — use them to open conversations rather than close them.</div>
+
+    <div class="explore-block">
+      <div class="explore-header">Income accountability — the most important line of enquiry</div>
+      <div class="explore-body">Sara has described two previous hires who performed well at interview but could not translate ideas into income delivery. The question that most reliably separates candidates who own income from those who contribute to someone else's income is: <em>"What was your income target, who set it, how was it broken down, what did you actually hit — and what did you do in the month when it looked like you would fall short?"</em> All three recommended candidates can answer this question with specific numbers. The quality and specificity of the answer matters as much as the numbers themselves.</div>
+    </div>
+
+    <div class="explore-block">
+      <div class="explore-header">Ideas into plans — Sara's primary concern</div>
+      <div class="explore-body">Previous hires presented brilliantly and then could not operationalise their ideas. The antidote is to probe every strategic answer with: <em>"Walk me through exactly how you would execute that — who does what, by when, what does success look like at 30 days and 90 days, and what would tell you it is not working?"</em> Candidates who can go from idea to plan in a single breath demonstrate the operational instinct the role needs. Candidates who stay at the level of strategy are a concern.</div>
+    </div>
+
+    <div class="explore-block">
+      <div class="explore-header">Managing the team — the practical management question</div>
+      <div class="explore-body">The Digital Marketing Officer needs active management and development from week one. A useful question for each candidate: <em>"Imagine it is week three and one of your direct reports is not yet performing to the standard you need. Walk me through what you do — step by step, starting with day one of that conversation."</em> The answer reveals whether candidates understand formal performance management or are defaulting to informal coaching. All three recommended candidates have some management evidence — the depth varies and is noted in each profile above.</div>
+    </div>
+
+    <div class="explore-block">
+      <div class="explore-header">Go Beyond knowledge — a signal of genuine engagement</div>
+      <div class="explore-body">All three recommended candidates have researched Go Beyond in depth. A useful opening question: <em>"Tell me what you know about Go Beyond — and tell me what you noticed, as a fundraiser, when you looked at the income picture."</em> The second half of this question — the fundraiser's observation — is where the best candidates will distinguish themselves. You are looking for someone who has looked at the regular giving base, the legacy programme, the ICM campaign, and the alumni potential through the lens of income opportunity, not just organisational description.</div>
+    </div>
+
+    <div class="explore-block">
+      <div class="explore-header">The live task — what to watch for</div>
+      <div class="explore-body">The task tests three things simultaneously: people management thinking, database and systems thinking, and creative campaign thinking under pressure. Watch for: how candidates prioritise when they cannot cover everything; whether they use the data available to them or ignore it; whether they talk to everyone in the room or only to Sara and Michelle; and whether their campaign ideas arrive with income logic attached or stay at the level of activity and reach. The questions that arise from the task presentation should feed directly into the formal interview.</div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>Raise + Recruit</strong> · raiseandrecruit.org.uk · john@raiseandrecruit.org.uk · Built for charities, not for profit · Co. No. 15210733
+</footer>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
